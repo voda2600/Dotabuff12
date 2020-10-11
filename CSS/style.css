@@ -1,0 +1,53 @@
+html {
+  width: auto;
+  min-height: 100%;
+}
+
+a {
+  margin-bottom: 0.2rem;
+}
+
+header {
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+nav {
+  height: 50px;
+  background-color: #34344c;
+  position: fixed;
+  top: 0;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+}
+
+main {
+  margin-top: 4rem;
+}
+
+main1 {
+  margin-top: 3rem;
+}
+
+body {
+  height: 100%;
+  background-color: #F5F5F5;
+
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+}
+
+card {
+  margin-top: 2rem;
+}
+
+h1 {
+  margin-top: 8rem;
+}
+
+footer {
+  background: #15151e; /* Цвет фона */
+  color: #fff; /* Цвет текста */
+  margin-top: 30rem;
+}
