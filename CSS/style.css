@@ -22,6 +22,26 @@ nav {
   font-style: normal;
 }
 
+<<<<<<< HEAD
+#myModal {
+   background: #200122;
+   background: -webkit-linear-gradient(to bottom, #A52A2A, #330d36);
+   background: linear-gradient(to bottom, #A52A2A, #330d36);
+   padding: 60px 50px;
+   position: relative;
+}
+
+.form-control {
+ background-color: #C0C0C0;
+ height: 40px;
+ border-radius: 30px;
+ padding: 0 20px;
+ font-size: 17px;
+ font-weight: bold;
+}
+
+=======
+>>>>>>> bc984b30ddc342e683263edd699e7990990f0ffd
 main {
   margin-top: 4rem;
 }
