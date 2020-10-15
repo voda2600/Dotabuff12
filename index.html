@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="CSS\style.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
-    <!-- <link rel="shortcut icon" href="CSS/logo5.png"  width="50" height="50" type="image/png"> -->
+    <link rel="shortcut icon" href="img/Logo.png" type="image/png">
     <title>Главная</title>
   </head>
 
@@ -22,8 +22,10 @@
     <!-- Навигация -->
     <nav class="navbar navbar-expand-md navbar-inverse navbar-fixed-top
     navbar-dark justify-content-center">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="index.html" style="margin-left: 6rem;">
         <!-- <img src="CSS/logo5.png"  width="65" height="65" alt="Логотип"> -->
+        <p style="padding-top: 1rem; font: 1.5em 'Raleway', sans-serif;
+        text-shadow: 1px 1px 2px black, 0 0 1em #FF00FF;">AnyMeta</p>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse"
         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -33,16 +35,21 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="index.html" style="margin-left: 6rem;">Домой</a>
+            <a class="nav-link" href="index.html" style="margin-left: 1.2rem;">Домой</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link py-2 d-none d-md-inline-block" href="index.html">Подробно</a>
           </li>
         </ul>
-        <button type="button" class="btn btn-primary"
-          data-toggle="modal" data-target="#myModal" style="margin-right: 7rem;">
+        <button type="button" class="btn btn-outline-primary" id="authorization"
+          data-toggle="modal" data-target="#myModal">
           Авторизация
         </button>
+          <button type="button" onclick="document.location='index0.html'"
+           class="btn btn-primary" id="registration"
+            style="margin-right: 7rem;">
+            Регистрация
+          </button>
       </div>
     </nav>
 
@@ -50,43 +57,41 @@
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
-<<<<<<< HEAD
-          <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel">Вход:</h4>
-=======
-          <div class="modal-header">ы
-            <h4 class="modal-title" id="myModalLabel">Вход</h4>
->>>>>>> bc984b30ddc342e683263edd699e7990990f0ffd
-          </div>
-          <div class="modal-body">
-            <form name="auth" method="POST">
-              <div class="form-group">
-<<<<<<< HEAD
-                <label for="exampleInputEmail1">Почта:</label>
-=======
-                <label for="exampleInputEmail1">Почта</label>
->>>>>>> bc984b30ddc342e683263edd699e7990990f0ffd
-                <input type="email" class="form-control" id="exampleInputEmail1"
-                 aria-describedby="emailHelp" placeholder="Введите почту">
-                <small id="emailHelp" class="form-text text-muted">
-                  Мы никогда никому не передадим вашу электронную почту.
-                </small>
+        <div class="container">
+          <div class="col-12">
+            <div class="modal-content">
+              <div class="modal-header align-self-center">
+                <div class="h4">Авторизация:</div>
               </div>
-              <div class="form-group">
-                <label for="InputPassword">Пароль</label>
-                <input type="password" class="form-control"
-                 id="InputPassword" placeholder="Введите пароль">
+              <div class="modal-body">
+                <form name="auth" method="POST">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Почта:</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1"
+                     aria-describedby="emailHelp" placeholder="Введите почту">
+                    <small id="emailHelp" class="form-text text-muted" style="margin-left: 1rem;">
+                      Мы никогда никому не передадим вашу электронную почту
+                    </small>
+                  </div>
+                  <div class="form-group">
+                    <label for="InputPassword" id="pass">Пароль</label>
+                    <input type="password" class="form-control"
+                     id="InputPassword" placeholder="Введите пароль">
+                  </div>
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input"
+                    id="exampleCheck" style="margin-top: 0.45rem;">
+                    <label class="form-check-label" for="exampleCheck" style="margin-left: 1.1rem;">
+                      Запомнить меня
+                    </label>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Подтвердить</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
+                  </div>
+                </form>
               </div>
-              <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck">
-                <label class="form-check-label" for="exampleCheck">Запомнить меня</label>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
-                <button type="submit" class="btn btn-primary">Подтвердить</button>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -95,11 +100,10 @@
     <!-- Header -->
     <header class="header"></header>
 
-    <!-- Подробно -->
+    <!-- main -->
     <main class="main1 align-self-center" align="middle">
       <div class="container" align="middle">
         <div class="row">
-
         </div>
       </div>
     </main>
@@ -111,27 +115,25 @@
 
          <div class="col-md-5 mt-md-0 mt-3" style="margin-left: 7rem;">
            <h5 class="text-uppercase font-weight-bold">О проекте</h5>
-           <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla, nihil
-             repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam recusandae
-             harum esse fugiat. Itaque, culpa?</p>
+           <p>AnyMeta — многоцелевой сайт, на котором собрана статистика побед, игроков,
+              а также последние новости из игры, обновлений, мира киберспорта и многое другое.
+              Также имеется таблица героев <br> и мета-отчёт.</p>
          </div>
 
          <hr class="clearfix w-100 d-md-none pb-3">
          <div class="col-md-5 mb-md-0 mb-3">
            <h5 class="text-uppercase font-weight-bold">Разработчики</h5>
-           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi earum
-             commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam, aspernatur id
-             excepturi hic.</p>
+           <address>
+             <b>КФУ, ИТИС</b><br>
+             Адрес: ул. Кремлевская, 35, Казань, Респ. Татарстан, 420008<br>
+             Номер: 233-79-91
+           </address>
          </div>
 
        </div>
      </div>
      <div class="footer-copyright text-center py-3">© 2020 Copyright:
-<<<<<<< HEAD
        <a href="index.html">AnyMeta.ru</a>
-=======
-       <a href="index.html">AnimeSoset.ru</a>
->>>>>>> bc984b30ddc342e683263edd699e7990990f0ffd
      </div>
    </footer>
 

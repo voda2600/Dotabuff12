@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat+Alternates&family=Raleway&family=Roboto&family=Ubuntu&display=swap');
+
 html {
   width: auto;
   min-height: 100%;
 }
 
 a {
-  margin-bottom: 0.2rem;
+  margin-bottosm: 0.2rem;
 }
 
 header {
@@ -13,6 +15,7 @@ header {
 }
 
 nav {
+  font-family: 'Raleway', sans-serif;
   height: 50px;
   background-color: #34344c;
   position: fixed;
@@ -22,8 +25,19 @@ nav {
   font-style: normal;
 }
 
-<<<<<<< HEAD
+#authorization {
+  width: 13%;
+  margin-bottom: 0.1rem;
+  margin-right: 1rem;
+}
+
+#registration {
+  width: 13%;
+  margin-bottom: 0.1rem;
+}
+
 #myModal {
+  font-family: 'Raleway', sans-serif;
    background: #200122;
    background: -webkit-linear-gradient(to bottom, #A52A2A, #330d36);
    background: linear-gradient(to bottom, #A52A2A, #330d36);
@@ -31,23 +45,46 @@ nav {
    position: relative;
 }
 
-.form-control {
- background-color: #C0C0C0;
- height: 40px;
- border-radius: 30px;
- padding: 0 20px;
- font-size: 17px;
- font-weight: bold;
+.modal-content {
+  background-color: #F8F8FF;
 }
 
-=======
->>>>>>> bc984b30ddc342e683263edd699e7990990f0ffd
+.form-group {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+label {
+  margin-left: 1rem;
+}
+
+.form-control {
+   background-color: #C0C0C0;
+   height: 40px;
+   border-radius: 30px;
+   padding: 0 20px;
+   font-size: 17px;
+   font-weight: bold;
+}
+
+#exampleCheck {
+  margin-left: 0.01rem;
+}
+
+.btn {
+   width: 100%;
+   background: #9932CC;
+   padding: 7px 14px;
+   border: none;
+   font-size: 14px;
+   font-weight: bold;
+   color: #fff;
+   border-radius: 20px;
+   text-transform: uppercase;
+}
+
 main {
   margin-top: 4rem;
-}
-
-main1 {
-  margin-top: 3rem;
 }
 
 body {
@@ -67,6 +104,7 @@ h1 {
 }
 
 footer {
+  font-family: 'Raleway', sans-serif;
   background: #15151e; /* Цвет фона */
   color: #fff; /* Цвет текста */
   margin-top: 30rem;
