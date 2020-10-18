@@ -98,6 +98,8 @@ label {
 }
 
 main {
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
@@ -105,22 +107,13 @@ main {
 body {
   height: 100%;
   background-color: #F5F5F5;
-
   -webkit-font-smoothing: antialiased;
   -webkit-overflow-scrolling: touch;
 }
 
-card {
-  margin-top: 2rem;
-}
-
-h1 {
-  margin-top: 8rem;
-}
-
 footer {
   font-family: 'Raleway', sans-serif;
-  background: #15151e; /* Цвет фона */
-  color: #fff; /* Цвет текста */
-  margin-top: 30rem;
+  background: #15151e;
+  color: #fff; 
+  /* margin-top: 10rem; */
 }
