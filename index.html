@@ -21,11 +21,11 @@
 
     <!-- Навигация -->
     <nav class="navbar navbar-expand-md navbar-inverse navbar-fixed-top
-    navbar-dark justify-content-center">
-      <a class="navbar-brand" href="index.html" style="margin-left: 6rem;">
-        <!-- <img src="CSS/logo5.png"  width="65" height="65" alt="Логотип"> -->
-        <p style="padding-top: 1rem; font: 1.5em 'Raleway', sans-serif;
-        text-shadow: 1px 1px 2px black, 0 0 1em #FF00FF;">AnyMeta</p>
+    navbar-dark justify-content-center" id="nav1">
+      <a class="navbar-brand" href="index.html"
+        style="margin-left: 6rem;">
+        <stroke style="font: 25px 'Raleway', sans-serif;
+        text-shadow: 1px 1px 2px black, 0 0 1em #FF00FF;">AnyMeta</stroke>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse"
         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -35,23 +35,47 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="index.html" style="margin-left: 1.2rem;">Домой</a>
+            <a class="nav-link" href="home.html" style="margin-left: 1.2rem;">Домой</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link py-2 d-none d-md-inline-block" href="index.html">Подробно</a>
+            <a class="nav-link py-2 d-none d-md-inline-block" href="about.html">Подробно</a>
           </li>
         </ul>
         <button type="button" class="btn btn-outline-primary" id="authorization"
           data-toggle="modal" data-target="#myModal">
           Авторизация
         </button>
-          <button type="button" onclick="document.location='index0.html'"
+          <button type="button" onclick="document.location='registration.html'"
            class="btn btn-primary" id="registration"
             style="margin-right: 7rem;">
             Регистрация
           </button>
       </div>
     </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <nav class="navbar navbar-expand-md navbar-inverse navbar-fixed-top
+      navbar-dark justify-content-center" id="nav2">
+        <ul class="navbar-nav justify-content-center">
+          <li class="nav-item active">
+            <a class="nav-link" href="home.html">Главная</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="meta.html">Мета</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="herous.html">Герои</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="cybersport.html">Киберспорт</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="about.html">О проекте</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
     <!-- Авторизация -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -97,13 +121,11 @@
       </div>
     </div>
 
-    <!-- Header -->
-    <header class="header"></header>
-
     <!-- main -->
-    <main class="main1 align-self-center" align="middle">
+    <main class="main align-self-center" align="middle">
       <div class="container" align="middle">
         <div class="row">
+
         </div>
       </div>
     </main>
@@ -112,8 +134,9 @@
    <footer class="page-footer font-small teal pt-4">
      <div class="container-fluid text-center text-md-left">
        <div class="row">
+        <div class="col-1"></div>
 
-         <div class="col-md-5 mt-md-0 mt-3" style="margin-left: 7rem;">
+         <div class="col-md-5 mt-md-0 mt-3">
            <h5 class="text-uppercase font-weight-bold">О проекте</h5>
            <p>AnyMeta — многоцелевой сайт, на котором собрана статистика побед и героев,
               а также последние новости из игры, обновлений, мира киберспорта и многое другое.
@@ -130,10 +153,12 @@
            </address>
          </div>
 
+         <div class="col-1"></div>
+
        </div>
      </div>
-     <div class="footer-copyright text-center py-3">© 2020 Copyright:
-       <a href="index.html">AnyMeta.ru</a>
+     <div class="footer-copyright text-center py-3">© 2020 Copyright: &nbsp
+       <a href="home.html">AnyMeta.ru</a>
      </div>
    </footer>
 
@@ -148,13 +173,6 @@
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
    crossorigin="anonymous"></script>
-
-   <!-- Custom script as written on bootstrap page -->
-   <script>
-     $('#myModal').on('shown.bs.modal', function () {
-       $('#myInput').focus()
-     })
-   </script>
 
   </body>
 </html>
