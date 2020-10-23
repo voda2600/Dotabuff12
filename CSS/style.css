@@ -104,6 +104,57 @@ main {
   padding-bottom: 4rem;
 }
 
+.body_slides {
+  background: #000;
+}
+
+.body_slides, .body_slides:after {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.body_slides li {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: auto;
+  background-repeat: no-repeat;
+  opacity: 0;
+  -webkit-animation: anim_slides 18s linear infinite 0s;
+  -moz-animation: anim_slides 18s linear infinite 0s;
+  -o-animation: anim_slides 18s linear infinite 0s;
+  -ms-animation: anim_slides 18s linear infinite 0s;
+  animation: anim_slides 18s linear infinite 0s;
+}
+
+.body_slides li:nth-child(2){
+  -webkit-animation-delay: 6.0s;
+  -moz-animation-delay: 6.0s;
+}
+
+.body_slides li:nth-child(3){
+  -webkit-animation-delay: 12.0s;
+  -moz-animation-delay: 12.0s;
+}
+
+@-webkit-keyframes anim_slides {
+  0% {opacity:0;}
+  6% {opacity:1;}
+  24% {opacity:1;}
+  30% {opacity:0;}
+  100% {opacity:0;}
+}
+@-moz-keyframes anim_slides {
+  0% {opacity:0;}
+  6% {opacity:1;}
+  24% {opacity:1;}
+  30% {opacity:0;}
+  100% {opacity:0;}
+}
+
 body {
   height: 100%;
   background-color: #F5F5F5;
@@ -114,6 +165,6 @@ body {
 footer {
   font-family: 'Raleway', sans-serif;
   background: #15151e;
-  color: #fff; 
+  color: #fff;
   /* margin-top: 10rem; */
 }
