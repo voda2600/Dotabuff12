@@ -141,21 +141,21 @@ main {
 }
 
 @-webkit-keyframes anim_slides {
-  0% {opacity:0;}
-  6% {opacity:1;}
-  24% {opacity:1;}
-  30% {opacity:0;}
-  100% {opacity:0;}
+  0% { opacity:0; }
+  6% { opacity:1; }
+  24% { opacity:1; }
+  30% { opacity:0; }
+  100% { opacity:0; }
 }
 @-moz-keyframes anim_slides {
-  0% {opacity:0;}
-  6% {opacity:1;}
-  24% {opacity:1;}
-  30% {opacity:0;}
-  100% {opacity:0;}
+  0% { opacity:0; }
+  6% { opacity:1; }
+  24% { opacity:1; }
+  30% { opacity:0; }
+  100% { opacity:0; }
 }
 
-#Undying_part, #Clinkz_part, #Underlord_part,
+/* #Undying_part, #Clinkz_part, #Underlord_part,
 #Spectre_part, #Zeus_part, #Ogre_Magi_part,
 #Arc_Warden_part, #Night_Stalker_part, #Dark_Seer_part,
 #Warlock_part, #Wraith_King_part, #Bloodseeker_part {
@@ -169,9 +169,30 @@ main {
 #Dark_Seer_part:hover, #Warlock_part:hover,
 #Wraith_King_part:hover, #Bloodseeker_part:hover {
   opacity: 0.5;
+} */
+
+.holder {
+  position: relative;
+  width: 256px;
+  height: 144px;
 }
 
-#Clinkz, #Underlord, #Arc_Warden,
+.block {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  background: rgba(255,255,255, 0.7);
+  padding: 5px;
+  display: none;
+}
+
+.holder:hover .block{
+  display: block;
+}
+
+/* #Clinkz, #Underlord, #Arc_Warden,
 #Ogre_Magi, #Warlock, #Undying,
 #Spectre, #Zeus, #Night_Stalker,
 #Dark_Seer, #Wraith_King, #Bloodseeker {
@@ -180,28 +201,50 @@ main {
   top: 10rem;
   left: 7rem;
   right: 7rem;
-  width: auto;
+  width: 600px;
   height: auto;
-  background: rgba(220, 220, 220, 0.9);
   border-radius: 20px;
   padding: 20px;
-  transition: opacity .2s, visibility .2s;
+  transition: opacity .4s, visibility .4s;
+  background: #FFFFFF;
+  -moz-box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+} */
+
+#carouselExampleIndicators {
+  width: auto;
 }
 
-/* #Spectre, #Zeus, #Night_Stalker,
-#Dark_Seer, #Wraith_King, #Bloodseeker {
-  opacity: 0;
+ol.carousel-indicators {
   position: absolute;
-  top: 10rem;
-  left: 7rem;
-  right: 7rem;
+  bottom: 0;
+  margin: 0;
+  left: 0;
+  right: 0;
   width: auto;
-  height: auto;
-  background: rgba(220, 220, 220, 0.9);
-  border-radius: 20px;
-  padding: 20px;
-  transition: opacity .2s, visibility .2s;
-} */
+}
+
+ol.carousel-indicators li,
+ol.carousel-indicators li.active {
+  float: left;
+  width: 33%;
+  height: 10px;
+  margin: 0;
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+}
+
+ol.carousel-indicators li.active {
+  background: #808080;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 50px;
+}
 
 body {
   height: 100%;
