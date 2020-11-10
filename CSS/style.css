@@ -155,22 +155,6 @@ main {
   100% { opacity:0; }
 }
 
-/* #Undying_part, #Clinkz_part, #Underlord_part,
-#Spectre_part, #Zeus_part, #Ogre_Magi_part,
-#Arc_Warden_part, #Night_Stalker_part, #Dark_Seer_part,
-#Warlock_part, #Wraith_King_part, #Bloodseeker_part {
-  opacity: 1.0;
-}
-
-#Undying_part:hover, #Clinkz_part:hover,
-#Underlord_part:hover, #Spectre_part:hover,
-#Zeus_part:hover, #Ogre_Magi_part:hover,
-#Arc_Warden_part:hover, #Night_Stalker_part:hover,
-#Dark_Seer_part:hover, #Warlock_part:hover,
-#Wraith_King_part:hover, #Bloodseeker_part:hover {
-  opacity: 0.5;
-} */
-
 .holder {
   position: relative;
   width: 256px;
@@ -191,26 +175,6 @@ main {
 .holder:hover .block{
   display: block;
 }
-
-/* #Clinkz, #Underlord, #Arc_Warden,
-#Ogre_Magi, #Warlock, #Undying,
-#Spectre, #Zeus, #Night_Stalker,
-#Dark_Seer, #Wraith_King, #Bloodseeker {
-  opacity: 0;
-  position: absolute;
-  top: 10rem;
-  left: 7rem;
-  right: 7rem;
-  width: 600px;
-  height: auto;
-  border-radius: 20px;
-  padding: 20px;
-  transition: opacity .4s, visibility .4s;
-  background: #FFFFFF;
-  -moz-box-shadow: 0 5px 5px rgba(0,0,0,0.3);
-  -webkit-box-shadow: 0 5px 5px rgba(0,0,0,0.3);
-  box-shadow: 0 5px 5px rgba(0,0,0,0.3);
-} */
 
 #carouselExampleIndicators {
   width: auto;
