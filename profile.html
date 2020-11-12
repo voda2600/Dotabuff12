@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" conыtent="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="CSS\profile_style.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+    <link rel="shortcut icon" href="img/Logo.png" type="image/png">
+    <title>BANGLADESH</title> <!-- Тут никнейм (псевдоним) профиля, которую юзер указал при регистрации -->
+  </head>
+
+  <body>
+
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-md navbar-inverse navbar-fixed-top
+    navbar-dark justify-content-center" id="nav1">
+      <a class="navbar-brand" href="home.html"
+        style="margin-left: 6rem;">
+        <stroke style="font: 25px 'Raleway', sans-serif;
+        text-shadow: 1px 1px 2px black, 0 0 1em #FF00FF;">AnyMeta</stroke>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="home.html" style="margin-left: 1.2rem;">Домой</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link py-2 d-none d-md-inline-block" href="about.html">Подробно</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <nav class="navbar navbar-expand-md navbar-inverse navbar-fixed-top
+      navbar-dark justify-content-center" id="nav2">
+        <ul class="navbar-nav justify-content-center">
+          <li class="nav-item active">
+            <a class="nav-link" href="home.html">Главная</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="meta.html">Мета</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="herous.html">Герои</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="cybersport.html">Киберспорт</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="about.html">О проекте</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- main -->
+    <main class="main align-self-center">
+      <div class="container">
+        <div class="row">
+
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div id="content" class="content content-full-width">
+
+                  <!-- Profile Тут нужна логика, аватарку откуда брать, никнем юзера и т.д  -->
+                  <div class="profile">
+                    <div class="profile-header">
+                      <div class="profile-header-cover"></div>
+                      <div class="profile-header-content">
+
+                        <div class="profile-header-img">
+                          <img src="img\noavatar.png" alt="Your avatar"> <!-- Ну тут изначально без аватара картинка -->
+                        </div> <!-- А после редактирования профиля, можно будет загрузить аватар -->
+
+                        <div class="profile-header-info">
+                           <h4 class="m-t-10 m-b-5">BANGLADESH</h4> <!-- Ну тут никнейм (псевдоним) от айдишника -->
+                          <p class="m-b-10">2000 ммр, любимый герой: Bloodseeker</p> <!-- Тут инфа, которую указал юзер при регистрации -->
+                          <a href="#" class="btn btn-sm btn-info mb-2" style="width: auto;">
+                            Редактировать профиль</a>
+                        </div>
+
+                      </div>
+                      <ul class="profile-header-tab nav nav-tabs">
+                        <li class="nav-item">
+                          <a style="font-size: 18px" href="#profile-post" class="nav-link active show" data-toggle="tab">Посты</a>
+                        </li>
+                        <li class="nav-item">
+                          <a style="font-size: 18px" href="#profile-about" class="nav-link" data-toggle="tab">Обо мне</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- Profile content -->
+                  <div class="profile-content">
+                    <div class="tab-content p-0">
+                      <div class="tab-pane fade active show" id="profile-post">
+                        <ul class="timeline">
+                          <li>
+                            <div class="timeline-time">
+                              <span class="date">Сегодня</span> <!-- Нужна логика для даты -->
+                              <span class="time">13:54</span> <!-- Нужна логика для времени -->
+                            </div>
+                            <div class="timeline-icon">
+                              <a href="javascript:;">&nbsp;</a>
+                            </div>
+                            <div class="timeline-body">
+                              <div class="timeline-header">
+                                <span class="userimage">
+                                  <img src="img\noavatar.png" alt="Your avatar">
+                                </span>
+                                <span class="username">
+                                  <a href="javascript:;">Dias Bolatov</a>
+                                  <small></small>
+                                </span>
+                              </div>
+                              <div class="timeline-content">
+                                <p style="font-size: 18px">
+                                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus.
+                                   Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
+                                </p>
+                              </div>
+
+                              <!-- Количество лайков и комментариев поста -->
+                              <div class="timeline-likes">
+                                <div class="stats-right" style="font-size: 15px">
+                                  <span class="stats-text">1 Комментарий</span>
+                                </div>
+                                <div class="stats">
+                                  <span class="fa-stack fa-fw stats-icon">
+                                    <i class="fa fa-circle fa-stack-2x text-danger"></i>
+                                    <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
+                                  </span>
+                                  <span class="fa-stack fa-fw stats-icon">
+                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                    <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
+                                  </span>
+                                  <span class="stats-total" style="font-size: 20px">2</span>
+                                </div>
+                              </div>
+                              <div class="timeline-footer">
+                                <a href="javascript:;" class="m-r-15 text-inverse-lighter">
+                                  <i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Лайк
+                                </a>
+                                <a href="javascript:;" class="m-r-15 text-inverse-lighter">
+                                  <i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Комментарии
+                                </a>
+                              </div>
+
+                              <!-- Комментарий -->
+                              <div class="timeline-comment-box">
+                                <div class="user">
+                                  <img src="img\noavatar.png" alt="Your avatar">
+                                </div>
+                                <div class="input">
+                                  <form action="">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control rounded-corner" placeholder="Напишите что-нибудь...">
+                                      <span class="input-group-btn p-l-10">
+                                        <button style="margin-left: 1rem;" class="btn btn-primary f-s-12 rounded-corner" type="button">
+                                          Отправить
+                                        </button>
+                                      </span>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+
+                            </div>
+                          </li>
+
+                          <!-- Прокрутка вниз с загрузкой поста -->
+                          <li>
+                            <div class="timeline-icon">
+                              <a href="javascript:;">&nbsp;</a>
+                            </div>
+                            <div class="timeline-body">
+                              Загрузка...
+                            </div>
+                          </li>
+
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+   <!-- Footer -->
+   <footer class="page-footer font-small teal pt-4">
+     <div class="container-fluid text-center text-md-left">
+       <div class="row">
+        <div class="col-1"></div>
+
+         <div class="col-md-5 mt-md-0 mt-3">
+           <h5 class="text-uppercase font-weight-bold">О проекте</h5>
+           <p>AnyMeta — многоцелевой сайт, на котором собрана статистика побед и героев,
+              а также последние новости из игры, обновлений, мира киберспорта и многое другое.
+              Также имеется таблица героев и мета-отчёт.</p>
+         </div>
+
+         <hr class="clearfix w-100 d-md-none pb-3">
+         <div class="col-md-5 mb-md-0 mb-3">
+           <h5 class="text-uppercase font-weight-bold">Разработчики</h5>
+           <address>
+             <b>КФУ, ИТИС</b><br>
+             Адрес: ул. Кремлевская, 35, Казань, Респ. Татарстан, 420008<br>
+             Номер: 233-79-91
+           </address>
+         </div>
+
+         <div class="col-1"></div>
+
+       </div>
+     </div>
+     <div class="footer-copyright text-center py-3">© 2020 Copyright: &nbsp
+       <a href="home.html">AnyMeta.ru</a>
+     </div>
+   </footer>
+
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+   integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+   crossorigin="anonymous"></script>
+
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+   integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+   crossorigin="anonymous"></script>
+
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+   integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+   crossorigin="anonymous"></script>
+
+  </body>
+</html>
