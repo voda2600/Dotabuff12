@@ -10,7 +10,7 @@
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="CSS\profile_style.css">
+    <link rel="stylesheet" type="text/css" href="CSS\style.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
     <link rel="shortcut icon" href="img/Logo.png" type="image/png">
@@ -62,11 +62,67 @@
             <a class="nav-link" href="cybersport.html">Киберспорт</a>
           </li>
           <li class="nav-item active">
+            <a class="nav-link" href="forum.html">Форум</a>
+          </li>
+          <li class="nav-item active">
             <a class="nav-link" href="about.html">О проекте</a>
           </li>
         </ul>
       </nav>
     </header>
+
+    <!-- Редактирование -->
+    <div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog"
+     aria-labelledby="myModalEdit" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="container">
+          <div class="col-12">
+            <div class="modal-content">
+              <div class="modal-body">
+                <form name="auth" method="POST">
+
+                  <div class="form-group col-md-3">
+                    <div class="profile-header-img">
+                      <img src="img\noavatar.png" alt="Your avatar"> <!-- Ну тут изначально без аватара картинка -->
+                    </div><br>
+                    <label for="exampleAvatar">Сменить аватар:</label>
+                    <input type="file" class="form-control-file" id="exampleAvatar">
+                  </div>
+
+                  <div class="form-row">
+
+                    <div class="form-group col-md-6">
+                      <label for="exampleInputNickname">Сменить псевдоним:</label>
+                      <input required="" type="text" class="form-control" id="exampleInputNickname"
+                      pattern="^(?!.*\.\.)(?!\.)(?!.*\.$)(?!\d+$)[a-zA-Z0-9.]{5,15}$" placeholder="Введите псевдоним...">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="exampleInputEmail">Сменить почту:</label>
+                      <input required="" type="email" class="form-control" id="exampleInputEmail"
+                      placeholder="Введите почту...">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="InputPassword">Пароль:</label>
+                      <input required="" type="password" name="InputPassword"
+                      class="form-control" id="InputPassword"
+                      pattern="(?=^.{6,}$)(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).*" placeholder="Введите пароль..."
+                      title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 6 и более символов">
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- main -->
     <main class="main align-self-center">
@@ -91,17 +147,15 @@
                         <div class="profile-header-info">
                            <h4 class="m-t-10 m-b-5">BANGLADESH</h4> <!-- Ну тут никнейм (псевдоним) от айдишника -->
                           <p class="m-b-10">2000 ммр, любимый герой: Bloodseeker</p> <!-- Тут инфа, которую указал юзер при регистрации -->
-                          <a href="#" class="btn btn-sm btn-info mb-2" style="width: auto;">
+                          <a data-toggle="modal" data-target="#ModalEdit" class="btn btn-sm btn-info mb-2" style="width: auto;">
                             Редактировать профиль</a>
                         </div>
 
                       </div>
                       <ul class="profile-header-tab nav nav-tabs">
                         <li class="nav-item">
-                          <a style="font-size: 18px" href="#profile-post" class="nav-link active show" data-toggle="tab">Посты</a>
-                        </li>
-                        <li class="nav-item">
-                          <a style="font-size: 18px" href="#profile-about" class="nav-link" data-toggle="tab">Обо мне</a>
+                          <a style="font-size: 18px" href="#profile-post" class="nav-link active show"
+                           data-toggle="tab">Посты:</a>
                         </li>
                       </ul>
                     </div>
@@ -126,7 +180,7 @@
                                   <img src="img\noavatar.png" alt="Your avatar">
                                 </span>
                                 <span class="username">
-                                  <a href="javascript:;">Dias Bolatov</a>
+                                  <a href="javascript:;">Dias Bolatov</a> <!-- Ну тут никнейм (псевдоним) от айдишника -->
                                   <small></small>
                                 </span>
                               </div>
