@@ -161,8 +161,63 @@
                     </div>
                   </div>
 
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-2"></div>
+
+                      <div class="col-8">
+
+                        <h2 align="middle" style="margin-top: 2rem;">Редактор постов</h2>
+
+                        <form action="#" method="POST" name="post_form" id="post_form"
+                        data-form-type="candbox">
+                          <div class="item title required" style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <label for="title">
+                              Заголовок:
+                            </lable>
+                            <input type="text" name="title" value>
+                          </div>
+
+                          <div class="item text">
+                            <label style="margin-left: 2.5rem;">Текст:</label>
+                            <div class="tm-editor" id="editor-tabs" data-component="tm-editor">
+                              <form enctype="multipart/form-data" method="post">
+                                <p><input style="margin-left: 2.5rem;" onclick="habraWYG2.insertImage(this);" type="file" name="photo" multiple accept="image/*,image/jpeg">
+                              </form>
+
+                              <div id="editor-tab" class="tm-editor__pane tm-editor__pane_content active js-tab-pane">
+                                <ul class="tm-editor__toolbar tm-editor__toolbar_tabbed wysiwyg-toolbar">
+                                <script>
+                                  $(document).ready(function(){
+                                    $(document).trigger('hljsUpdate');
+                                  });
+                                </script>
+
+                                <div class="tm-editor__textarea-wrap js-scrollable" tabindex="0">
+                                  <textarea class="tm-editor__textarea tm-editor__textarea_huge"
+                                   cols="30" rows="7" id="text_textarea" name="text"></textarea>
+                                </div>
+                                <div class="tm-editor__footer">
+                                  <label class="сm-editor__footer-checkbox">
+                                    <input type="checkbox" name="userformat" id="userformat">
+                                    <span>Отключить автоматические переносы строк и создание ссылок</span>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+
+                        <input type="submit" class="btn btn_huge btn_green" name="submit"
+                         value="Опубликовать" style="width: auto; margin-left: 35rem;">
+                      </div>
+
+                      <div class="col-2"></div>
+                    </div>
+                  </div><hr>
+
                   <!-- Profile content -->
-                  <div class="profile-content">
+                  <div class="profile-content" style="margin-top: 2rem;">
                     <div class="tab-content p-0">
                       <div class="tab-pane fade active show" id="profile-post">
                         <ul class="timeline">
@@ -306,6 +361,17 @@
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
    crossorigin="anonymous"></script>
+
+   <!-- <script> // если в нашем хранилище уже что-то есть…
+     if (localStorage.getItem('text_in_editor') !== null) {
+       // …то отображаем его содержимое в нашем редакторе
+       document.getElementById('editor').innerHTML = localStorage.getItem('text_in_editor');
+     } // отслеживаем каждое нажатие клавиши и при каждом нажатии выполняем команду
+     document.addEventListener('keydown', function (e)
+     { // записываем содержимое нашего редактора в хранилище
+       localStorage.setItem('text_in_editor', document.getElementById('editor').innerHTML); });
+      // закончился скрипт
+    </script> -->
 
   </body>
 </html>

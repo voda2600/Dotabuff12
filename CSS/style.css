@@ -21,6 +21,20 @@ nav {
   font-style: normal;
 }
 
+.tm-editor__textarea {
+  width: 100%;
+  min-height: 500px;
+  border: solid;
+  border-width: 0px;
+  text-align: left;
+  background-color: white;
+  -webkit-box-shadow: 6px 10px 9px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 6px 10px 9px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 6px 10px 9px 0px rgba(0, 0, 0, 0.75);
+  padding: 15px;
+  border-radius: 5px;
+}
+
 #nav1 a:hover {
   color: #DCDCDC;
 }
