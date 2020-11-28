@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SemestreWork.Repository;
 
 namespace SemestreWork
 {
@@ -28,6 +29,8 @@ namespace SemestreWork
             {
                 options.Conventions.AddPageRoute("/Home", "");
             });
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddTransient<IRepository, NewsRepository>();
 
         }
 

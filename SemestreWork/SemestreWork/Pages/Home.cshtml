@@ -5,7 +5,13 @@
 }
 
 <!-- main -->
-<main class="main align-self-center">
+    <main class="main align-self-center">
+        @foreach (var item in Model.newsList)
+        {
+        <div>
+            @item.Text
+        </div>
+        }
     <div class="container">
         <div class="row">
             <div class="col-2"></div>
@@ -57,6 +63,6 @@
             <div class="col-2"></div>
         </div>
     </div>
-</main>
+    </main>
 
 
