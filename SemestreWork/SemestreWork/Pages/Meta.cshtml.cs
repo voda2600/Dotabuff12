@@ -35,19 +35,25 @@ namespace SemestreWork.Pages
 
         public string DotabuffParser(string url)
         {
+            string source;
+            try { 
             HttpClient client; 
             client = new HttpClient();
             Random random = new Random();
             client.DefaultRequestHeaders.Add("User-Agent", "C# App");
             HttpResponseMessage responce = client.GetAsync(url).Result; 
-                string source;
-                source = responce.Content.ReadAsStringAsync().Result;
+            source = responce.Content.ReadAsStringAsync().Result;
             var splitMas = source.Split("article");
             source = splitMas[1] ;
             source = source.Remove(0, 1);
             int len = source.Length;
             source = source.Remove(len-2, 2);
-            source = source.Replace("sortable", "iksweb");
+            source = source.Replace("sortable", "iksweb");  
+            }
+            catch
+            {
+                source = "Статистика пока не доступна!";
+            }
             return HttpUtility.HtmlEncode(source);
         }
         
