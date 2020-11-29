@@ -30,8 +30,8 @@ namespace SemestreWork
                 options.Conventions.AddPageRoute("/Home", "");
             });
             services.AddSingleton<IConfiguration>(Configuration);
-            services.AddTransient<IRepository, NewsRepository>();
-
+            services.AddTransient<INewsRepository, NewsRepository>();
+            services.AddTransient<IMetaRepository, MetaRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

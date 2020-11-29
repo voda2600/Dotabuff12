@@ -15,8 +15,8 @@ namespace SemestreWork.Pages
 
     public class NewsModel : PageModel
     {
-        IRepository _Repository;
-        public NewsModel(IRepository Repository)
+        INewsRepository _Repository;
+        public NewsModel(INewsRepository Repository)
         {
             _Repository = Repository;
         }

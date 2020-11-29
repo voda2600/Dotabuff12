@@ -12,8 +12,8 @@ namespace SemestreWork.Pages
 {
     public class HomeModel : PageModel
     {
-        IRepository _Repository;
-        public HomeModel(IRepository Repository)
+        INewsRepository _Repository;
+        public HomeModel(INewsRepository Repository)
         {
             _Repository = Repository;
         }

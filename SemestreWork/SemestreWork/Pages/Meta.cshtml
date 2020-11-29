@@ -11,43 +11,30 @@
             <div class="col-1"></div>
 
             <div class="col-10">
-                <h2 align="middle">Краткое описание меты</h2><br>
-                <div class="card">
-                    <div class="card-body">
+                @Html.Raw(Model.metaPost.Text)
+                <form method="post">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="panel">
+                                    <div class="panel-body">
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <input asp-for="metaPost.Id" type="hidden" />
+                                            <label asp-for="metaPost.Text" style="font-weight:bold;"></label>
+                                            <textarea style="width:600px; height:150px;" type='text' class='form-control' asp-for="metaPost.Text"></textarea>
+                                            <span class="alert-danger" asp-validation-for="metaPost.Text"></span>
+                                        </div>
+                                        <div class="text-center col-md-12" style="margin-top:35px;">
+                                            <button class="btn btn-primary btn-sx" type="submit"><i class="glyphicon glyphicon-plus"></i> Edit Post</button>
 
-                        <img src="img/Earth.jpg" alt="" width="100%"><br><br>
-                        <h3 align="middle"><b>Мета нового патча</b></h3><br>
-                        <p>
-                            С каждым днём Valve не перестают радовать комьюнити внезапными обновлениями и контентом.
-                            Сообщество придалось ярким обсуждениям альтернативной личности на Anti-Mage и вновь строит
-                            теории и домыслы о появлении нового героя в Dota 2, связанном с изменением иконки Aghanim’s
-                            Scepter, который в актуальной версии игры теперь разломан. Пока одни игроки ломают голову
-                            в догадках, другие изучили новые волнения меты вдоль и поперёк. Что же актуально на данный
-                            момент — расскажем в этой статье.
-                        </p><br>
-
-                        <h3 align="middle"><b>Всё ещё в мете? </b></h3><br>
-                        <p>
-                            В прошлый раз мы обсуждали с вами героев-суммонеров и их невероятную силу. LycanthropeLycan,
-                            BeastmasterBeastmaster, Lone DruidLone Druid стали самыми выбираемыми персонажами на высоком
-                            рейтинге с не менее высоким процентом побед.
-                            Сегодня их самые главные и важные предметы Helm of Dominator и Necronomicon были очень
-                            сильно понерфлены. Первый, по многим оценкам, так и вовсе стал самым бесполезным артефактом
-                            в игре. Стали ли герои от этого слабее?
-                        </p><br>
-                        <img src="img/Lycan.jpg" alt="" width="100%"><br><br>
-
-                        <p>
-                            Их фарм действительно замедлился. Сегодня LycanthropeLycan не выходит из леса на ранних
-                            минутах, упакованный во все шесть слотов. Героям пришлось весьма сильно потерять в
-                            темпе добычи своих предметов. Но хватки они не растеряли, а вот былой симпатии в
-                            глазах игроков к этим персонажам уже нет. Преданными остались лишь те, кто и до всех
-                            этих патчей и популярности героев продолжал играть на них и показывал чудеса микроконтроля.
-                            Поэтому винрейт, к примеру, LycanthropeLycan и Beastmaster не так сильно упал по сравнению с
-                            прошлыми показателями, но играть против них всё же стало чуточку легче.
-                        </p>
-
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </form>
+            </div>
                 </div><br><br>
 
                 <div class="card">

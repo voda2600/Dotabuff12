@@ -12,7 +12,7 @@ using System.Web;
 
 namespace SemestreWork.Repository
 {
-    public class NewsRepository : IRepository
+    public class NewsRepository : INewsRepository
     {
         IConfiguration _configuration;
    
