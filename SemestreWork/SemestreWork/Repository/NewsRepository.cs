@@ -31,7 +31,7 @@ namespace SemestreWork.Repository
                 try
                 {
                     con.Open();
-                    var query = "INSERT INTO NewsPosts(Name, Intro, Text, Picture) VALUES(@Name, @Intro, @Text,@Picture); SELECT CAST(SCOPE_IDENTITY() as INT);";
+                    var query = "INSERT INTO NewsPosts(Name, Intro, Text, Picture) VALUES(@Name, @Intro, @Text,@Picture);";
                     count = con.Execute(query, news);
                 }
                 catch (Exception ex)
@@ -109,7 +109,7 @@ namespace SemestreWork.Repository
                 try
                 {
                     con.Open();
-                    var query = "SELECT * FROM NewsPosts";
+                    var query = "SELECT * FROM NewsPosts ORDER BY Id";
                     products = con.Query<NewsPost>(query).ToList();
                 }
                 catch (Exception ex)

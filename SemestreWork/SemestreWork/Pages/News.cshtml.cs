@@ -55,20 +55,19 @@ namespace SemestreWork.Pages
             return Page();
         }
 
-        //public IActionResult OnPostDelete(int id)
-        //{
-        //    news.Id = Id;
-        //    if (id > 0)
-        //    {
-        //        var count = _Repository.DeleteNews(id);
-        //        if (count > 0)
-        //        {
-        //            return RedirectToPage("/Home/"+Id);
-        //        }
-        //    }
+        public IActionResult OnPostDelete(int id)
+        {
+            if (id > 0)
+            {
+                var count = _Repository.DeleteNews(id);
+                if (count > 0)
+                {
+                    return RedirectToPage("/Home");
+                }
+            }
 
-        //    return Page();
+            return Page();
 
-        //}
+        }
     }
 }

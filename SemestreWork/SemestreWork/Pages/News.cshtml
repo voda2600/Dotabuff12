@@ -1,4 +1,4 @@
-﻿@page "{id}"
+﻿@page "{id:int}"
 @model SemestreWork.Pages.NewsModel
 @{
     ViewData["Title"] = "Newss";
@@ -11,7 +11,21 @@
             <div class="col-2"></div>
 
             <div class="col-8">
-                <h2 align="middle">@Model.news.Name</h2>
+                <div align ="right">
+                    <h2 align="middle">@Model.news.Name</h2>
+                    <form method="post">
+                        <button type="submit" asp-page-handler="Delete" asp-route-id="@Model.news.Id" style=" padding: 0;
+        border: none;
+        font: inherit;
+        color: inherit;
+        background-color: transparent;
+        color: #C0C0C0;
+        font-size: 80%;
+">
+                            DeletePost [X]
+                        </button>
+                    </form>
+                </div>
                 <hr>
                 <div class="card">
                     <img src="@Model.news.Picture" alt="Dota 2" width="100%">
@@ -36,12 +50,12 @@
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label asp-for="news.Intro" style="font-weight:bold;"></label>
-                                            <textarea type='text' class='form-control' asp-for="news.Intro"></textarea>
+                                            <textarea style="width:400px;" type='text' class='form-control' asp-for="news.Intro"></textarea>
                                             <span class="alert-danger" asp-validation-for="news.Intro"></span>
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label asp-for="news.Text" style="font-weight:bold;"></label>
-                                            <textarea type='text' class='form-control' asp-for="news.Text"></textarea>
+                                            <textarea style="width:600px; height:150px;" type='text' class='form-control' asp-for="news.Text"></textarea>
                                             <span class="alert-danger" asp-validation-for="news.Text"></span>
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">

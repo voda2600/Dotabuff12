@@ -14,24 +14,25 @@
             <div class="col-8">
                 <h2 align="middle">Последние обновления</h2>
                 <hr>
-                @{ var i = Model.newsList.Count; Model.newsList.Reverse(); }
-                @foreach (var item in Model.newsList) 
+
+                
+                @for(int i=Model.newsList.Count-1;i>=0;i--) 
                 {
 
                     <div class="card">
-                        <a class="nav-link" href="/News/@i">
-                            <img src="@item.Picture" alt="dotaplus" width="100%">
+                        <a class="nav-link" href="/News/@Model.newsList[i].Id">
+                            <img src="@Model.newsList[i].Picture" alt="dotaplus" width="100%">
                         </a>
                         <div class="card-body">
-                            <h4 align="middle">@item.Name</h4>
+                            <h4 align="middle">@Model.newsList[i].Name</h4>
                             <p>
-                                @item.Intro
+                                @Model.newsList[i].Intro
                             </p>
                         </div>
                     </div>
                     <br />
                     <br />
-                    i--;
+                  
                 }
                 <form method="post">
                     <h4>
