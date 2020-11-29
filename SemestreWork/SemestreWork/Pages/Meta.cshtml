@@ -5,170 +5,93 @@
 }
 
 <!-- main -->
-<main class="main align-self-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-1"></div>
+    <main class="main align-self-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    @Html.Raw(Model.metaPost.Text)
+                    <form method="post">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="panel">
+                                        <div class="panel-body">
+                                            <div class="col-md-12" style="margin-top:15px;">
+                                                <input asp-for="metaPost.Id" type="hidden" />
+                                                <label asp-for="metaPost.Text" style="font-weight:bold;"></label>
+                                                <textarea style="width:600px; height:150px;" type='text' class='form-control' asp-for="metaPost.Text"></textarea>
+                                                <span class="alert-danger" asp-validation-for="metaPost.Text"></span>
+                                            </div>
+                                            <div class="text-center col-md-12" style="margin-top:35px;">
+                                                <button class="btn btn-primary btn-sx" type="submit"><i class="glyphicon glyphicon-plus"></i> Edit Post</button>
 
-            <div class="col-10">
-                @Html.Raw(Model.metaPost.Text)
-                <form method="post">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="panel">
-                                    <div class="panel-body">
-                                        <div class="col-md-12" style="margin-top:15px;">
-                                            <input asp-for="metaPost.Id" type="hidden" />
-                                            <label asp-for="metaPost.Text" style="font-weight:bold;"></label>
-                                            <textarea style="width:600px; height:150px;" type='text' class='form-control' asp-for="metaPost.Text"></textarea>
-                                            <span class="alert-danger" asp-validation-for="metaPost.Text"></span>
-                                        </div>
-                                        <div class="text-center col-md-12" style="margin-top:35px;">
-                                            <button class="btn btn-primary btn-sx" type="submit"><i class="glyphicon glyphicon-plus"></i> Edit Post</button>
-
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-                </div><br><br>
+                    </form>
+                </div>
+            </div><br><br>
+                 
+            <div class="card">
+                <div class="card-body">
 
-                <div class="card">
-                    <div class="card-body">
+                    <h3>Наибольшая доля побед в этом месяце</h3><hr>
+                    @Html.Raw(@Model.metaTable)
+                    <br><br><br>
 
-                        <h3>Наибольшая доля побед в этом месяце</h3><hr>
-                        <div class="mobile-table">
-                            <table class="iksweb">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Герой</th>
-                                        <th colspan="2">Доля побед</th>
-                                        <th colspan="2">Частота выбора</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- 1 четвертка -->
-                                    <tr>
-                                        <td colspan="2"><img src="img/Clinkz_mini.jpg">  <b>Clinkz</b></td>
-                                        <td colspan="2">56.30%</td>
-                                        <td colspan="2">8.62%</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><img src="img/Underlord_mini.jpg" style="margin-left: 2rem;">  <b>Underlord</b></td>
-                                        <td colspan="2">56.02%</td>
-                                        <td colspan="2">7.07%</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><img src="img/Spectre_mini.jpg" style="margin-left: 1rem;">  <b>Spectre</b></td>
-                                        <td colspan="2">54.81%</td>
-                                        <td colspan="2">15.69%</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><img src="img/Zeus_mini.jpg" style="margin-left: 0rem;">  <b>Zeus</b></td>
-                                        <td colspan="2">54.64%</td>
-                                        <td colspan="2">17.65%</td>
-                                    </tr>
+                    <style>
+                        table.iksweb {
+                            text-decoration: none;
+                            border-collapse: collapse;
+                            width: 100%;
+                            text-align: center;
+                        }
 
-                                    <!-- 2 четвертка -->
-                                    <tr>
-                                        <td colspan="2"><img src="img/Ogre_Magi_mini.jpg" style="margin-left: 2rem;">  <b>Ogre Magi</b></td>
-                                        <td colspan="2">53.52%</td>
-                                        <td colspan="2">23.03%</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><img src="img/Arc_Warden_mini.jpg" style="margin-left: 3rem;">  <b>Arc Warden</b></td>
-                                        <td colspan="2">52.79%</td>
-                                        <td colspan="2">4.62%</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><img src="img/Dark_Seer_mini.jpg" style="margin-left: 2rem;">  <b>Dark Seer</b></td>
-                                        <td colspan="2">52.70%</td>
-                                        <td colspan="2">1.94%</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><img src="img/Night_Stalker_mini.jpg" style="margin-left: 3rem;">  <b>Night Stalker</b></td>
-                                        <td colspan="2">52.60%</td>
-                                        <td colspan="2">5.56%</td>
-                                    </tr>
-
-                                    <!-- 3 четвертка -->
-                                    <tr>
-                                        <td colspan="2"><img src="img/Undying_mini.jpg" style="margin-left: 1rem;">  <b>Undying</b></td>
-                                        <td colspan="2">52.56%</td>
-                                        <td colspan="2">7.57%</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><img src="img/Warlock_mini.jpg" style="margin-left: 1rem;">  <b>Warlock</b></td>
-                                        <td colspan="2">52.53%</td>
-                                        <td colspan="2">5.58%</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><img src="img/Bloodseeker_mini.jpg" style="margin-left: 3rem;">  <b>Bloodseeker</b></td>
-                                        <td colspan="2">52.43%</td>
-                                        <td colspan="2">6.64%</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><img src="img/Wraith_King_mini.jpg" style="margin-left: 2rem;">  <b>Wraith King</b></td>
-                                        <td colspan="2">52.29%</td>
-                                        <td colspan="2">11.58%</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div><br><br><br>
-
-                        <style>
-                            table.iksweb {
-                                text-decoration: none;
-                                border-collapse: collapse;
-                                width: 100%;
-                                text-align: center;
+                            table.iksweb th {
+                                font-weight: 500;
+                                font-size: 18px;
+                                color: #ffffff;
+                                background-color: #354251;
                             }
 
-                                table.iksweb th {
-                                    font-weight: 500;
-                                    font-size: 18px;
-                                    color: #ffffff;
-                                    background-color: #354251;
-                                }
+                            table.iksweb td {
+                                font-size: 15px;
+                                color: #354251;
+                            }
 
-                                table.iksweb td {
-                                    font-size: 15px;
+                            table.iksweb td, table.iksweb th {
+                                white-space: pre-wrap;
+                                padding: 14px 12px;
+                                line-height: 15px;
+                                vertical-align: middle;
+                                border: 2px solid #354251;
+                            }
+
+                            table.iksweb tr:hover {
+                                background-color: #f9fafb
+                            }
+
+                                table.iksweb tr:hover td {
                                     color: #354251;
+                                    cursor: default;
                                 }
 
-                                table.iksweb td, table.iksweb th {
-                                    white-space: pre-wrap;
-                                    padding: 14px 12px;
-                                    line-height: 15px;
-                                    vertical-align: middle;
-                                    border: 2px solid #354251;
-                                }
+                        .mobile-table {
+                            width: 100%;
+                            max-width: 100%;
+                            overflow-x: auto;
+                        }
+                    </style>
 
-                                table.iksweb tr:hover {
-                                    background-color: #f9fafb
-                                }
+                </div>
+            </div><br><br>
 
-                                    table.iksweb tr:hover td {
-                                        color: #354251;
-                                        cursor: default;
-                                    }
-
-                            .mobile-table {
-                                width: 100%;
-                                max-width: 100%;
-                                overflow-x: auto;
-                            }
-                        </style>
-
-                    </div>
-                </div><br><br>
-
-                <div class="col-1"></div>
-            </div>
+            <div class="col-1"></div>
         </div>
-</main>
+        </div>
+    </main>
 

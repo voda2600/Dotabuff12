@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNetCore.Mvc;
@@ -19,11 +23,34 @@ namespace SemestreWork.Pages
         }
         [BindProperty]
         public MetaPost metaPost { get; set; }
+
+        public string metaTable { get; set; }
         public void OnGet()
         {
+            
             metaPost = metaRepository.GetMeta(1);
             metaPost.Text = HttpUtility.HtmlDecode(metaPost.Text);
+            metaTable = HttpUtility.HtmlDecode(DotabuffParser("https://ru.dotabuff.com/heroes/winning"));
         }
+
+        public string DotabuffParser(string url)
+        {
+            HttpClient client; 
+            client = new HttpClient();
+            Random random = new Random();
+            client.DefaultRequestHeaders.Add("User-Agent", "C# App");
+            HttpResponseMessage responce = client.GetAsync(url).Result; 
+                string source;
+                source = responce.Content.ReadAsStringAsync().Result;
+            var splitMas = source.Split("article");
+            source = splitMas[1] ;
+            source = source.Remove(0, 1);
+            int len = source.Length;
+            source = source.Remove(len-2, 2);
+            source = source.Replace("sortable", "iksweb");
+            return HttpUtility.HtmlEncode(source);
+        }
+        
         public IActionResult OnPost()
         {
             var data = metaPost;
