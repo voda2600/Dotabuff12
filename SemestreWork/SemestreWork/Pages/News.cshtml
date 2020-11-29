@@ -1,48 +1,35 @@
-﻿@page
-@model SemestreWork.Pages.HomeModel
+﻿@page "{id}"
+@model SemestreWork.Pages.NewsModel
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Newss";
 }
 
 <!-- main -->
-    <main class="main align-self-center">
-      
+<main class="main align-self-center">
     <div class="container">
         <div class="row">
             <div class="col-2"></div>
 
             <div class="col-8">
-                <h2 align="middle">Последние обновления</h2>
+                <h2 align="middle">@Model.news.Name</h2>
                 <hr>
-                @{ var i = Model.newsList.Count; Model.newsList.Reverse(); }
-                @foreach (var item in Model.newsList) 
-                {
-
-                    <div class="card">
-                        <a class="nav-link" href="/News/@i">
-                            <img src="@item.Picture" alt="dotaplus" width="100%">
-                        </a>
-                        <div class="card-body">
-                            <h4 align="middle">@item.Name</h4>
-                            <p>
-                                @item.Intro
-                            </p>
-                        </div>
+                <div class="card">
+                    <img src="@Model.news.Picture" alt="Dota 2" width="100%">
+                    <div class="card-body">
+                        @{
+                            var str = @Model.HTMLtext;
+                        }
+                        @Html.Raw(str)
                     </div>
-                    <br />
-                    <br />
-                    i--;
-                }
+                </div>
                 <form method="post">
-                    <h4>
-                        <span>Please Enter New Post Details!!!</span>
-                    </h4>
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="panel">
                                     <div class="panel-body">
                                         <div class="col-md-12" style="margin-top:15px;">
+                                            <input asp-for="news.Id" type="hidden" />
                                             <label asp-for="news.Name" style="font-weight:bold;"></label>
                                             <input type='text' class='form-control' asp-for="news.Name" />
                                             <span class="alert-danger" asp-validation-for="news.Name"></span>
@@ -54,7 +41,7 @@
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label asp-for="news.Text" style="font-weight:bold;"></label>
-                                            <textarea type='text' class='form-control' asp-for="news.Text"></textarea> 
+                                            <textarea type='text' class='form-control' asp-for="news.Text"></textarea>
                                             <span class="alert-danger" asp-validation-for="news.Text"></span>
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">
@@ -64,8 +51,8 @@
                                         </div>
 
                                         <div class="text-center col-md-12" style="margin-top:35px;">
-                                            <button class="btn btn-primary btn-sx" type="submit"><i class="glyphicon glyphicon-plus"></i> Add Post</button>
-                                            
+                                            <button class="btn btn-primary btn-sx" type="submit"><i class="glyphicon glyphicon-plus"></i> Edit Post</button>
+
                                         </div>
                                     </div>
                                 </div>
@@ -73,9 +60,28 @@
                         </div>
                     </div>
                 </form>
-                <div class="col-2"></div>
-            </div>
-    </div>
-    </main>
+                <div class="timeline-comment-box" style="margin-top: 2rem;">
+                    <div class="user">
+                        <img src="~/img/noavatar.png" alt="Your avatar" width="5%">
+                    </div>
+                    <div class="input">
+                        <form action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control rounded-corner" placeholder="Напишите что-нибудь...">
+                                <span class="input-group-btn p-l-10">
+                                    <button style="margin-left: 1rem;" class="btn btn-primary f-s-12 rounded-corner" type="button">
+                                        Отправить
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
+            </div>
+
+            <div class="col-2"></div>
+        </div>
+    </div>
+</main>
 

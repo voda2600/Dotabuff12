@@ -1,4 +1,5 @@
 ﻿using Dapper;
+
 using Microsoft.Extensions.Configuration;
 using SemestreWork.Models;
 using System;
@@ -6,6 +7,8 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
+
 
 namespace SemestreWork.Repository
 {
@@ -18,7 +21,8 @@ namespace SemestreWork.Repository
             _configuration = configuration;
         }
 
-        public int Add(NewsPost product)
+
+        public int Add(NewsPost news)
         {
             var connectionString = this.GetConnection();
             int count = 0;
@@ -27,8 +31,8 @@ namespace SemestreWork.Repository
                 try
                 {
                     con.Open();
-                    var query = "INSERT INTO NewsPosts(Name, Intro, Text) VALUES(@Name, @Intro, @Text); SELECT CAST(SCOPE_IDENTITY() as INT);";
-                    count = con.Execute(query, product);
+                    var query = "INSERT INTO NewsPosts(Name, Intro, Text, Picture) VALUES(@Name, @Intro, @Text,@Picture); SELECT CAST(SCOPE_IDENTITY() as INT);";
+                    count = con.Execute(query, news);
                 }
                 catch (Exception ex)
                 {
@@ -69,7 +73,7 @@ namespace SemestreWork.Repository
             }
         }
 
-        public int EditNews(NewsPost product)
+        public int EditNews(NewsPost news)
         {
             var connectionString = this.GetConnection();
             var count = 0;
@@ -79,8 +83,8 @@ namespace SemestreWork.Repository
                 try
                 {
                     con.Open();
-                    var query = "UPDATE NewsPosts SET Name = @Name, Intro = @Intro, Text = @Text WHERE Id = @Id";
-                    count = con.Execute(query, product);
+                    var query = "UPDATE NewsPosts SET Name = @Name, Intro = @Intro, Text = @Text, Picture = @Picture WHERE Id = @Id";
+                    count = con.Execute(query, news);
                 }
                 catch (Exception ex)
                 {
@@ -121,6 +125,7 @@ namespace SemestreWork.Repository
             }
         }
 
+     
         public NewsPost GetNews(int id)
         {
             var connectionString = this.GetConnection();
@@ -130,13 +135,14 @@ namespace SemestreWork.Repository
             {
                 try
                 {
+                
                     con.Open();
                     var query = "SELECT * FROM NewsPosts WHERE Id =" + id;
                     product = con.Query<NewsPost>(query).FirstOrDefault();
                 }
-                catch (Exception ex)
+                catch
                 {
-                    throw ex;
+                    throw new Exception("Нет данного поста");
                 }
                 finally
                 {
