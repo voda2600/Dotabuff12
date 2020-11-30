@@ -21,8 +21,6 @@ namespace SemestreWork.Pages
             _Repository = Repository;
         }
 
-        [BindProperty]
-        public List<NewsPost> newsList { get; set; }
 
         [BindProperty]
         public NewsPost news { get; set; }

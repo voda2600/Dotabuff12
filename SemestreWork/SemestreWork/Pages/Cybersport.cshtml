@@ -14,34 +14,57 @@
                     <div class="card-body">
 
                         <h3>Ближайшие турниры в городе Казань:</h3><hr>
-                        <div class="mobile-table">
-                            <table class="iksweb">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Название турнира</th>
-                                        <th colspan="2">Призовой фонд</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td id="Name_tournament_1_Kazan" colspan="2"><img src="img/noname.png">  <b>Winstrike Tavern</b></td>
-                                        <td id="Money_1_Kazan" colspan="2">150,000₽</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="Name_tournament_2_Kazan" colspan="2"><img src="img/noname.png" style="margin-left: -3rem;">  <b>TatGames</b></td>
-                                        <td id="Money_2_Kazan" colspan="2">1,000,000₽</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="Name_tournament_3_Kazan" colspan="2"><img src="img/noname.png" style="margin-left: 1rem;">  <b>Кубок России 2020</b></td>
-                                        <td id="Money_3_Kazan" colspan="2">3,500,000₽</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="Name_tournament_4_Kazan" colspan="2"><img src="img/noname.png" style="margin-left: -7rem;">  <b>-</b></td>
-                                        <td id="Money_4_Kazan" colspan="2">-</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div><br><br><br>
+                                                                   <div class="mobile-table">
+                                                                       
+                                                                           <table class="iksweb">
+                                                                               <thead>
+                                                                                   <tr>
+                                                                                       <th colspan="2" >Название турнира</th>
+                                                                                       <th colspan="2">Призовой фонд</th>
+                                                                                   </tr>
+                                                                               </thead>
+                                                                               <tbody>
+                                                                                   @foreach (var kazan in Model.CyberList)
+                                                                                   {
+                                                                                       <tr>
+                                                                                           <td colspan="2"><img src="~/img/noname.png">  <b>@kazan.Name</b></td>
+                                                                                           <td colspan="2">@String.Format("{0:0,0}", kazan.Money)₽  </td>
+                                                                                           <td>
+                                                                                               <form method="post">
+                                                                                                   <button type="submit" asp-page-handler="DeleteKazan" asp-route-id="@kazan.Id" style=" padding: 0;
+                                                                                    border: none;
+                                                                                    font: inherit;
+                                                                                    color: inherit;
+                                                                                    background-color: transparent;
+                                                                                    color: #C0C0C0;
+                                                                                    font-size: 100%;
+                                                                                        ">
+                                                                                                       [X]
+                                                                                                   </button>
+                                                                                               </form>
+                                                                                           </td>
+                                                                                       </tr>
+                                                                                   }
+                                                                               <form method="post">
+                                                                                   <tr>
+                                                                                       <td colspan="2" align="center">
+                                                                                           <input type='text' asp-for="CyberKazan.Name" />
+                                                                                           <span class="alert-danger" asp-validation-for="CyberKazan.Name"></span>
+                                                                                       </td>
+                                                                                       <td colspan="2" align="center">
+                                                                                           <input type='number' asp-for="CyberKazan.Money" />
+                                                                                           <span class="alert-danger" asp-validation-for="CyberKazan.Money"></span>
+                                                                                           <button type="submit" style="width:18px; padding:3px;" asp-page-handler="Kazan">+</button>
+                                                                                       </td>
+                                                                                   </tr>
+                                                                                  
+                                                                               </form>
+                                                                               </tbody>
+                                                                           </table>
+                                                                           <br>
+                                                                           
+                                                                      
+                                                                   </div><br><br><br>
 
                         <style>
                             table.iksweb {
@@ -64,7 +87,7 @@
                                 }
 
                                 table.iksweb td, table.iksweb th {
-                                    white-space: pre-wrap;
+                                    
                                     padding: 14px 12px;
                                     line-height: 15px;
                                     vertical-align: middle;
@@ -97,22 +120,46 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td id="Name_tournament_1_World" colspan="2"><img src="img/Ti10.jpg">  <b>The International</b></td>
-                                        <td id="Money_1_World" colspan="2">$40,018,195</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="Name_tournament_2_World" colspan="2"><img src="img/Epicenter.jpg" style="margin-left: -3rem;">  <b>Epicenter</b></td>
-                                        <td id="Money_2_World" colspan="2">$1,000,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="Name_tournament_3_World" colspan="2"><img src="img/Summit.jpg" style="margin-left: -4rem;">  <b>Summit</b></td>
-                                        <td id="Money_3_World" colspan="2">$150,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="Name_tournament_4_World" colspan="2"><img src="img/DreamLeague.jpg" style="margin-left: -1rem;">  <b>DreamLeague</b></td>
-                                        <td id="Money_4_World" colspan="2">$1,000,000</td>
-                                    </tr>
+                                    @foreach (var global in Model.GlobalList)
+                                    {
+                                        <tr>
+                                            <td colspan="2"><img src="@global.Picture" width="15%">  <b>@global.Name</b></td>
+                                            <td colspan="2">$@String.Format("{0:0,0}", global.Money)  </td>
+                                            <td>
+                                                <form method="post">
+                                                    <button type="submit" asp-page-handler="DeleteGlobal" asp-route-id="@global.Id" style=" padding: 0;
+                                                                                    border: none;
+                                                                                    font: inherit;
+                                                                                    color: inherit;
+                                                                                    background-color: transparent;
+                                                                                    color: #C0C0C0;
+                                                                                    font-size: 100%;
+                                                                                        ">
+                                                        [X]
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                    <form method="post">
+                                        <tr>
+                                            <td colspan="2" align="center">
+                                                <label>picture</label>
+                                                <input type='text' asp-for="Global.Picture" />
+                                                <span class="alert-danger" asp-validation-for="Global.Picture"></span>
+                                                <br />
+                                                <label>name</label>
+                                                <input type='text' asp-for="Global.Name" />
+                                                <span class="alert-danger" asp-validation-for="Global.Name"></span>
+                                            </td>
+                                            <td colspan="2" align="center">
+                                                <input type='number' asp-for="Global.Money" />
+                                                <span class="alert-danger" asp-validation-for="Global.Money"></span>
+                                                <button type="submit" style="width:18px; padding:3px;" asp-page-handler="Global">+</button>
+                                            </td>
+                                        </tr>
+
+                                    </form>
                                 </tbody>
                             </table>
                         </div>
@@ -132,26 +179,46 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td colspan="2"><img src="img/OG_profile.png"><hr><h3><b>OG</b></h3></td>
-                                        <td colspan="2">Призовые: $32,755,833</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><img src="img/Liquid_profile.png"><hr><h3><b>Team Liquid</b></h3></td>
-                                        <td colspan="2">Призовые: $22,940,428</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><img src="img/Secret_profile.png"><hr><h3><b>Team Secret</b></h3></td>
-                                        <td colspan="2">Призовые: $11,662,344</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><img src="img/Vici_profile.png"><hr><h3><b>Vici Gaming</b></h3></td>
-                                        <td colspan="2">Призовые: $9,622,677</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><img src="img/Alliance_profile.jpg"><hr><h3><b>The Alliance</b></h3></td>
-                                        <td colspan="2">Призовые: $4,736,658</td>
-                                    </tr>
+                                    @foreach (var team in Model.TopList)
+                                    {
+                                        <tr>
+                                            <td colspan="2"><img src="@team.Picture" width="40%"> <hr><h3><b>@team.Name</b></h3></td>
+                                            <td colspan="2">Призовые: $@String.Format("{0:0,0}", team.Money)  </td>
+                                            <td>
+                                                <form method="post">
+                                                    <button type="submit" asp-page-handler="DeleteTop" asp-route-id="@team.Id" style=" padding: 0;
+                                                                                    border: none;
+                                                                                    font: inherit;
+                                                                                    color: inherit;
+                                                                                    background-color: transparent;
+                                                                                    color: #C0C0C0;
+                                                                                    font-size: 100%;
+                                                                                        ">
+                                                        [X]
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                    <form method="post">
+                                        <tr>
+                                            <td colspan="2" align="center">
+                                                <label>picture</label>
+                                                <input type='text' asp-for="Topteam.Picture" />
+                                                <span class="alert-danger" asp-validation-for="Topteam.Picture"></span>
+                                                <br />
+                                                <label>name</label>
+                                                <input type='text' asp-for="Topteam.Name" />
+                                                <span class="alert-danger" asp-validation-for="Topteam.Name"></span>
+                                            </td>
+                                            <td colspan="2" align="center">
+                                                <input type='number' asp-for="Topteam.Money" />
+                                                <span class="alert-danger" asp-validation-for="Topteam.Money"></span>
+                                                <button type="submit" style="width:18px; padding:3px;" asp-page-handler="Top">+</button>
+                                            </td>
+                                        </tr>
+
+                                    </form>
                                 </tbody>
                             </table>
                         </div>

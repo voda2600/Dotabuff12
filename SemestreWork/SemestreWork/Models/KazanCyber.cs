@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace SemestreWork.Models
 {
-    public class MetaPost
+    public class KazanCyber
     {
-     
+      
         public int Id { get; set; }
 
- 
-        public string Text { get; set; }
+       
+        public string Name { get; set; }
 
+       
+        public Int64 Money { get; set; }
     }
 }

@@ -10,19 +10,19 @@ namespace SemestreWork.Models
   
     public class NewsPost
     {
-        [Key]
+     
         public int Id { get; set; }
 
-        [Required]
+      
         public string Name { get; set; }
 
-        [Required]
+     
         public string Intro { get; set; }
 
-        [Required]
+     
         public string Text { get; set; }
         
-        [Required]
+       
         public string Picture { get; set; }
 
 
