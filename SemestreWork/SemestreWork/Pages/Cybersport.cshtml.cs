@@ -14,13 +14,19 @@ namespace SemestreWork.Pages
     {
         ICyberKazanRepository _KazanRepository;
         IClobalCyberRepository _GlobalCyber;
-        ITopTeamRepository _TopTeam;
-        public CybersportModel(ICyberKazanRepository Repository,IClobalCyberRepository globalCyber, ITopTeamRepository TopTeam)
+        ITopTeamRepository _TopTeamRepository;
+        TopPlayersRepository _TopPlayersRepository;
+        public CybersportModel(ICyberKazanRepository Repository,IClobalCyberRepository globalCyber, ITopTeamRepository TopTeam, TopPlayersRepository TopPlayersRepository)
         {
             _KazanRepository = Repository;
             _GlobalCyber = globalCyber;
-            _TopTeam = TopTeam;
+            _TopTeamRepository = TopTeam;
+            _TopPlayersRepository = TopPlayersRepository;
         }
+        [BindProperty]
+        public TopPlayer Topplayer { get; set; }
+        [BindProperty]
+        public List<TopPlayer> TopPlayersList{ get; set; }
         [BindProperty]
         public TopTeam Topteam { get; set; }
         [BindProperty]
@@ -37,14 +43,29 @@ namespace SemestreWork.Pages
         {
             CyberList = _KazanRepository.GetList();
             GlobalList = _GlobalCyber.GetList();
-            TopList = _TopTeam.GetList();
+            TopList = _TopTeamRepository.GetList();
+            TopPlayersList = _TopPlayersRepository.GetList();
         }
         public IActionResult OnPostTop()
         {
 
             if (ModelState.IsValid)
             {
-                var count = _TopTeam.Add(Topteam);
+                var count = _TopTeamRepository.Add(Topteam);
+                if (count > 0)
+                {
+                    return RedirectToPage("/Cybersport");
+                }
+            }
+
+            return Page();
+        }
+        public IActionResult OnPostPlayer()
+        {
+
+            if (ModelState.IsValid)
+            {
+                var count = _TopPlayersRepository.Add(Topplayer);
                 if (count > 0)
                 {
                     return RedirectToPage("/Cybersport");
@@ -95,11 +116,25 @@ namespace SemestreWork.Pages
             return Page();
 
         }
+        public IActionResult OnPostDeletePlayer(int id)
+        {
+            if (id > 0)
+            {
+                var count = _TopPlayersRepository.DeleteCyber(id);
+                if (count > 0)
+                {
+                    return RedirectToPage("/Cybersport");
+                }
+            }
+
+            return Page();
+
+        }
         public IActionResult OnPostDeleteTop(int id)
         {
             if (id > 0)
             {
-                var count = _TopTeam.DeleteCyber(id);
+                var count = _TopTeamRepository.DeleteCyber(id);
                 if (count > 0)
                 {
                     return RedirectToPage("/Cybersport");
