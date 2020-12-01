@@ -28,7 +28,7 @@ namespace SemestreWork.Repository
                 try
                 {
                     con.Open();
-                    var query = "INSERT INTO Users(Nick, Email, Password, Hero, MMR) VALUES(@Nick, @Email, @Password, @Hero, @MMR);";
+                    var query = "INSERT INTO Users(Nick, Email, Password, Hero, MMR,Role) VALUES(@Nick, @Email, @Password, @Hero, @MMR,@Role);";
                     count = con.Execute(query, user);
                 }
                 catch (Exception ex)
@@ -80,7 +80,7 @@ namespace SemestreWork.Repository
                 try
                 {
                     con.Open();
-                    var query = "UPDATE Users SET Nick=@Nick, Email=@Email, Password=@Password, Hero=@Hero, MMR=@MMR WHERE Id = @Id";
+                    var query = "UPDATE Users SET Nick=@Nick, Email=@Email, Password=@Password, Hero=@Hero, MMR=@MMR, Role=@Role WHERE Id = @Id";
                     count = con.Execute(query, user);
                 }
                 catch (Exception ex)

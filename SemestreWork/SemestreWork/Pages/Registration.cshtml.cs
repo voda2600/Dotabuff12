@@ -25,6 +25,7 @@ namespace SemestreWork.Pages
         
         public IActionResult OnPost()
         {
+            user.Role = "Default";
             user.Password = Crypto.HashPassword(user.Password);
             if (ModelState.IsValid)
             {

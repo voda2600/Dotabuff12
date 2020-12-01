@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SemestreWork.Models;
 using SemestreWork.Repository;
 
 namespace SemestreWork
@@ -32,8 +33,8 @@ namespace SemestreWork
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
-                options.Cookie.Name = ".MyApp.Session";
                 options.IdleTimeout = TimeSpan.FromSeconds(3600);
+                options.Cookie.HttpOnly = false;
             });
             services.AddSingleton<IConfiguration>(Configuration);
 
@@ -64,9 +65,9 @@ namespace SemestreWork
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
             app.UseSession();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
