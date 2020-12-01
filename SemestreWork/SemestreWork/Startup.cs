@@ -66,6 +66,12 @@ namespace SemestreWork
 
             app.UseRouting();
             app.UseSession();
+            app.Use(async (context,next) =>
+            {
+                if (!context.Session.Keys.Contains("AuthReady"))
+                    context.Session.Set("AuthReady","false");
+                await next.Invoke();
+            });
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

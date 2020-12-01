@@ -17,5 +17,6 @@ namespace SemestreWork.Repository
         int EditUser(RegisterModel news);
 
         int DeleteUser(int id);
+        RegisterModel GetAuthUser(string email, string password);
     }
 }

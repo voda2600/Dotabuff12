@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat+Alternates&family=Raleway&family=Roboto&family=Ubuntu&display=swap');
 
-html {
-  width: auto;
-  min-height: 100%;
+html, body {
+    height: 100%;
 }
 
 header {
@@ -34,7 +33,6 @@ nav {
   padding: 15px;
   border-radius: 5px;
 }
-
 
 #nav1 a:hover {
   color: #DCDCDC;
@@ -71,7 +69,6 @@ nav {
   background: -webkit-linear-gradient(to bottom, #A52A2A, #330d36);
   background: linear-gradient(to bottom, #A52A2A, #330d36);
   padding: 60px 50px;
-  position: relative;
 }
 
 .modal-content {
@@ -587,10 +584,12 @@ ol.carousel-indicators li.active {
 }
 
 body {
-  height: 100%;
-  background-color: #F5F5F5;
-  -webkit-font-smoothing: antialiased;
-  -webkit-overflow-scrolling: touch;
+    background-size: 100%;
+    
+    background-color: #F5F5F5;
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+
 }
 
 footer {

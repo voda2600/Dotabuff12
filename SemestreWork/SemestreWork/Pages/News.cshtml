@@ -11,10 +11,15 @@
             <div class="col-2"></div>
 
             <div class="col-8">
-                <div align ="right">
+                <div align="right">
                     <h2 align="middle">@Model.news.Name</h2>
-                    <form method="post">
-                        <button type="submit" asp-page-handler="Delete" asp-route-id="@Model.news.Id" style=" padding: 0;
+                    @using SemestreWork.Models;
+                    @if (HttpContext.Session.Get<string>("AuthReady") == "true")
+                    {
+                        @if (HttpContext.Session.Get<RegisterModel>("AuthUser").Role.ToString() == "Admin")
+                        {
+                            <form method="post">
+                                <button type="submit" asp-page-handler="Delete" asp-route-id="@Model.news.Id" style=" padding: 0;
         border: none;
         font: inherit;
         color: inherit;
@@ -22,9 +27,11 @@
         color: #C0C0C0;
         font-size: 80%;
 ">
-                            DeletePost [X]
-                        </button>
-                    </form>
+                                    DeletePost [X]
+                                </button>
+                            </form>
+                        }
+                    }
                 </div>
                 <hr>
                 <div class="card">
@@ -36,63 +43,70 @@
                         @Html.Raw(str)
                     </div>
                 </div>
-                <form method="post">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="panel">
-                                    <div class="panel-body">
-                                        <div class="col-md-12" style="margin-top:15px;">
-                                            <input asp-for="news.Id" type="hidden" />
-                                            <label asp-for="news.Name" style="font-weight:bold;"></label>
-                                            <input type='text' class='form-control' asp-for="news.Name" />
-                                            <span class="alert-danger" asp-validation-for="news.Name"></span>
-                                        </div>
-                                        <div class="col-md-12" style="margin-top:15px;">
-                                            <label asp-for="news.Intro" style="font-weight:bold;"></label>
-                                            <textarea style="width:400px;" type='text' class='form-control' asp-for="news.Intro"></textarea>
-                                            <span class="alert-danger" asp-validation-for="news.Intro"></span>
-                                        </div>
-                                        <div class="col-md-12" style="margin-top:15px;">
-                                            <label asp-for="news.Text" style="font-weight:bold;"></label>
-                                            <textarea style="width:600px; height:150px;" type='text' class='form-control' asp-for="news.Text"></textarea>
-                                            <span class="alert-danger" asp-validation-for="news.Text"></span>
-                                        </div>
-                                        <div class="col-md-12" style="margin-top:15px;">
-                                            <label asp-for="news.Picture" style="font-weight:bold;"></label>
-                                            <input type='text' class='form-control' asp-for="news.Picture" />
-                                            <span class="alert-danger" asp-validation-for="news.Picture"></span>
-                                        </div>
+              
+                @if (HttpContext.Session.Get<string>("AuthReady") == "true")
+                {
+                    @if (HttpContext.Session.Get<RegisterModel>("AuthUser").Role.ToString() == "Admin")
+                    {
+                        <form method="post">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="panel">
+                                            <div class="panel-body">
+                                                <div class="col-md-12" style="margin-top:15px;">
+                                                    <input asp-for="news.Id" type="hidden" />
+                                                    <label asp-for="news.Name" style="font-weight:bold;"></label>
+                                                    <input type='text' class='form-control' asp-for="news.Name" />
+                                                    <span class="alert-danger" asp-validation-for="news.Name"></span>
+                                                </div>
+                                                <div class="col-md-12" style="margin-top:15px;">
+                                                    <label asp-for="news.Intro" style="font-weight:bold;"></label>
+                                                    <textarea style="width:400px;" type='text' class='form-control' asp-for="news.Intro"></textarea>
+                                                    <span class="alert-danger" asp-validation-for="news.Intro"></span>
+                                                </div>
+                                                <div class="col-md-12" style="margin-top:15px;">
+                                                    <label asp-for="news.Text" style="font-weight:bold;"></label>
+                                                    <textarea style="width:600px; height:150px;" type='text' class='form-control' asp-for="news.Text"></textarea>
+                                                    <span class="alert-danger" asp-validation-for="news.Text"></span>
+                                                </div>
+                                                <div class="col-md-12" style="margin-top:15px;">
+                                                    <label asp-for="news.Picture" style="font-weight:bold;"></label>
+                                                    <input type='text' class='form-control' asp-for="news.Picture" />
+                                                    <span class="alert-danger" asp-validation-for="news.Picture"></span>
+                                                </div>
 
-                                        <div class="text-center col-md-12" style="margin-top:35px;">
-                                            <button class="btn btn-primary btn-sx" type="submit"><i class="glyphicon glyphicon-plus"></i> Edit Post</button>
+                                                <div class="text-center col-md-12" style="margin-top:35px;">
+                                                    <button class="btn btn-primary btn-sx" type="submit"><i class="glyphicon glyphicon-plus"></i> Edit Post</button>
 
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </form>
-                <div class="timeline-comment-box" style="margin-top: 2rem;">
-                    <div class="user">
-                        <img src="~/img/noavatar.png" alt="Your avatar" width="5%">
-                    </div>
-                    <div class="input">
-                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control rounded-corner" placeholder="Напишите что-нибудь...">
-                                <span class="input-group-btn p-l-10">
-                                    <button style="margin-left: 1rem;" class="btn btn-primary f-s-12 rounded-corner" type="button">
-                                        Отправить
-                                    </button>
-                                </span>
-                            </div>
                         </form>
-                    </div>
-                </div>
+                        }
+                    }
+                        <div class="timeline-comment-box" style="margin-top: 2rem;">
+                            <div class="user">
+                                <img src="~/img/noavatar.png" alt="Your avatar" width="5%">
+                            </div>
+                            <div class="input">
+                                <form action="">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control rounded-corner" placeholder="Напишите что-нибудь...">
+                                        <span class="input-group-btn p-l-10">
+                                            <button style="margin-left: 1rem;" class="btn btn-primary f-s-12 rounded-corner" type="button">
+                                                Отправить
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
 
-            </div>
+                    </div>
 
             <div class="col-2"></div>
         </div>

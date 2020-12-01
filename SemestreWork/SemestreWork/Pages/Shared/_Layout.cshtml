@@ -1,4 +1,17 @@
-﻿<!doctype html>
+﻿@using Microsoft.AspNetCore.Http
+@using SemestreWork.Models;
+@{
+    int uid = 0;
+    if (Context.Session.Get<string>("AuthReady") == "true")
+    {
+        var user = Context.Session.Get<RegisterModel>("AuthUser");
+        if (user != null)
+        {
+            uid = user.Id;
+        }
+    }
+}
+<!doctype html>
 <html lang="en" dir="ltr">
 <head>
     <!-- Required meta tags -->
@@ -41,15 +54,30 @@
                     <a class="nav-link py-2 d-none d-md-inline-block" href="/About">Подробно</a>
                 </li>
             </ul>
-            <button type="button" class="btn btn-outline-primary" id="authorization"
-                    data-toggle="modal" data-target="#myModal">
-                Авторизация
-            </button>
-            <button type="button" onclick="document.location='/Registration'"
-                    class="btn btn-primary" id="registration"
-                    style="margin-right: 7rem;">
-                Регистрация
-            </button>
+            @if (Context.Session.Get<string>("AuthReady") == "false")
+            {
+                <button type="button" class="btn btn-outline-primary" id="authorization"
+                        onclick="document.location='/Authorization'">
+                    Авторизация
+                </button>
+                <button type="button" onclick="document.location='/Registration'"
+                        class="btn btn-primary" id="registration"
+                        style="margin-right: 7rem;">
+                    Регистрация
+                </button>
+            }
+            else
+            {
+                
+                <ul class="navbar-nav mr-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/Profile/@uid">Профиль</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-page="Authorization" asp-page-handler="LogOut">Выйти</a>
+                    </li>
+                </ul>
+            }
         </div>
     </nav>
 
@@ -83,48 +111,6 @@
     <!-- Авторизация -->
     <!-- <a>class="btn btn-danger btn-lg" href="/logout">Выйти</a> -->
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-         aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="container">
-                <div class="col-12">
-                    <div class="modal-content">
-                        <div class="modal-header align-self-center">
-                            <div class="h4">Авторизация:</div>
-                        </div>
-                        <div class="modal-body">
-                            <form name="auth" method="POST">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Почта:</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1"
-                                           aria-describedby="emailHelp" placeholder="Введите почту">
-                                    <small id="emailHelp" class="form-text text-muted" style="margin-left: 1rem;">
-                                        Мы никогда никому не передадим вашу электронную почту
-                                    </small>
-                                </div>
-                                <div class="form-group">
-                                    <label for="InputPassword" id="pass">Пароль</label>
-                                    <input type="password" class="form-control"
-                                           id="InputPassword" placeholder="Введите пароль">
-                                </div>
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input"
-                                           id="exampleCheck" style="margin-top: 0.45rem;">
-                                    <label class="form-check-label" for="exampleCheck" style="margin-left: 1.1rem;">
-                                        Запомнить меня
-                                    </label>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Подтвердить</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="container">
         <main role="main" class="pb-3">

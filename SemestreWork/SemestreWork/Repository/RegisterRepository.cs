@@ -28,7 +28,7 @@ namespace SemestreWork.Repository
                 try
                 {
                     con.Open();
-                    var query = "INSERT INTO Users(Nick, Email, Password, Hero, MMR,Role) VALUES(@Nick, @Email, @Password, @Hero, @MMR,@Role);";
+                    var query = "INSERT INTO MyUsers(Nick, Email, Password, Hero, MMR,Role) VALUES(@Nick, @Email, @Password, @Hero, @MMR,@Role);";
                     count = con.Execute(query, user);
                 }
                 catch (Exception ex)
@@ -54,7 +54,7 @@ namespace SemestreWork.Repository
                 try
                 {
                     con.Open();
-                    var query = "DELETE FROM Users WHERE Id =" + id;
+                    var query = "DELETE FROM MyUsers WHERE Id =" + id;
                     count = con.Execute(query);
                 }
                 catch (Exception ex)
@@ -80,7 +80,7 @@ namespace SemestreWork.Repository
                 try
                 {
                     con.Open();
-                    var query = "UPDATE Users SET Nick=@Nick, Email=@Email, Password=@Password, Hero=@Hero, MMR=@MMR, Role=@Role WHERE Id = @Id";
+                    var query = "UPDATE MyUsers SET Nick=@Nick, Email=@Email, Password=@Password, Hero=@Hero, MMR=@MMR, Role=@Role WHERE Id = @Id";
                     count = con.Execute(query, user);
                 }
                 catch (Exception ex)
@@ -106,7 +106,7 @@ namespace SemestreWork.Repository
                 try
                 {
                     con.Open();
-                    var query = "SELECT * FROM Users";
+                    var query = "SELECT * FROM MyUsers";
                     products = con.Query<RegisterModel>(query).ToList();
                 }
                 catch (Exception ex)
@@ -134,7 +134,32 @@ namespace SemestreWork.Repository
                 {
 
                     con.Open();
-                    var query = "SELECT * FROM Users WHERE Id =" + id;
+                    var query = "SELECT * FROM MyUsers WHERE Id =" + id;
+                    product = con.Query<RegisterModel>(query).FirstOrDefault();
+                }
+                catch
+                {
+                    throw new Exception("Нет данного пользователя");
+                }
+                finally
+                {
+                    con.Close();
+                }
+
+                return product;
+            }
+        }
+        public RegisterModel GetAuthUser(string email, string password)
+        {
+            var connectionString = this.GetConnection();
+            RegisterModel product = new RegisterModel();
+
+            using (var con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    var query = "SELECT * FROM MyUsers WHERE ( Email = '"+email+"' AND Password = '"+password+"');";
                     product = con.Query<RegisterModel>(query).FirstOrDefault();
                 }
                 catch

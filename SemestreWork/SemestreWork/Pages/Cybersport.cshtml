@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Cybersport";
 }
-
+@using SemestreWork.Models;
 <!-- main -->
 <main class="main align-self-center">
     <div class="container">
@@ -14,24 +14,30 @@
                     <div class="card-body">
 
                         <h3>Ближайшие турниры в городе Казань:</h3><hr>
-                                                                   <div class="mobile-table">
-                                                                       
-                                                                           <table class="iksweb">
-                                                                               <thead>
-                                                                                   <tr>
-                                                                                       <th colspan="2" >Название турнира</th>
-                                                                                       <th colspan="2">Призовой фонд</th>
-                                                                                   </tr>
-                                                                               </thead>
-                                                                               <tbody>
-                                                                                   @foreach (var kazan in Model.CyberList)
-                                                                                   {
-                                                                                       <tr>
-                                                                                           <td colspan="2"><img src="~/img/noname.png">  <b>@kazan.Name</b></td>
-                                                                                           <td colspan="2">@String.Format("{0:0,0}", kazan.Money)₽  </td>
-                                                                                           <td>
-                                                                                               <form method="post">
-                                                                                                   <button type="submit" asp-page-handler="DeleteKazan" asp-route-id="@kazan.Id" style=" padding: 0;
+                        <div class="mobile-table">
+
+                            <table class="iksweb">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Название турнира</th>
+                                        <th colspan="2">Призовой фонд</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var kazan in Model.CyberList)
+                                    {
+                                        <tr>
+                                            <td colspan="2"><img src="~/img/noname.png">  <b>@kazan.Name</b></td>
+                                            <td colspan="2">@String.Format("{0:0,0}", kazan.Money)₽  </td>
+                                            @if (HttpContext.Session.Get<string>("AuthReady") == "true")
+                                            {
+                                                @if (HttpContext.Session.Get<RegisterModel>("AuthUser").Role.ToString() == "Admin")
+                                                {
+                                                    <td>
+
+
+                                                        <form method="post">
+                                                            <button type="submit" asp-page-handler="DeleteKazan" asp-route-id="@kazan.Id" style=" padding: 0;
                                                                                     border: none;
                                                                                     font: inherit;
                                                                                     color: inherit;
@@ -39,32 +45,41 @@
                                                                                     color: #C0C0C0;
                                                                                     font-size: 100%;
                                                                                         ">
-                                                                                                       [X]
-                                                                                                   </button>
-                                                                                               </form>
-                                                                                           </td>
-                                                                                       </tr>
-                                                                                   }
-                                                                               <form method="post">
-                                                                                   <tr>
-                                                                                       <td colspan="2" align="center">
-                                                                                           <input type='text' asp-for="CyberKazan.Name" />
-                                                                                           <span class="alert-danger" asp-validation-for="CyberKazan.Name"></span>
-                                                                                       </td>
-                                                                                       <td colspan="2" align="center">
-                                                                                           <input type='number' asp-for="CyberKazan.Money" />
-                                                                                           <span class="alert-danger" asp-validation-for="CyberKazan.Money"></span>
-                                                                                           <button type="submit" style="width:18px; padding:3px;" asp-page-handler="Kazan">+</button>
-                                                                                       </td>
-                                                                                   </tr>
-                                                                                  
-                                                                               </form>
-                                                                               </tbody>
-                                                                           </table>
-                                                                           <br>
-                                                                           
-                                                                      
-                                                                   </div><br><br><br>
+                                                                [X]
+                                                            </button>
+                                                        </form>
+
+                                                    </td>
+                                                }
+                                            }
+                                        </tr>
+                                    }
+                                    @if (HttpContext.Session.Get<string>("AuthReady") == "true")
+                                    {
+                                        @if (HttpContext.Session.Get<RegisterModel>("AuthUser").Role.ToString() == "Admin")
+                                        {
+                                            <form method="post">
+                                                <tr>
+                                                    <td colspan="2" align="center">
+                                                        <input type='text' asp-for="CyberKazan.Name" />
+                                                        <span class="alert-danger" asp-validation-for="CyberKazan.Name"></span>
+                                                    </td>
+                                                    <td colspan="2" align="center">
+                                                        <input type='number' asp-for="CyberKazan.Money" />
+                                                        <span class="alert-danger" asp-validation-for="CyberKazan.Money"></span>
+                                                        <button type="submit" style="width:18px; padding:3px;" asp-page-handler="Kazan">+</button>
+                                                    </td>
+                                                </tr>
+
+                                            </form>
+                                                }
+                                            } 
+                                        </tbody>
+                            </table>
+                            <br>
+
+
+                        </div><br><br><br>
 
                         <style>
                             table.iksweb {
@@ -87,7 +102,6 @@
                                 }
 
                                 table.iksweb td, table.iksweb th {
-                                    
                                     padding: 14px 12px;
                                     line-height: 15px;
                                     vertical-align: middle;
@@ -125,9 +139,14 @@
                                         <tr>
                                             <td colspan="2"><img src="@global.Picture" width="15%">  <b>@global.Name</b></td>
                                             <td colspan="2">$@String.Format("{0:0,0}", global.Money)  </td>
-                                            <td>
-                                                <form method="post">
-                                                    <button type="submit" asp-page-handler="DeleteGlobal" asp-route-id="@global.Id" style=" padding: 0;
+                                            @if (HttpContext.Session.Get<string>("AuthReady") == "true")
+                                            {
+                                                @if (HttpContext.Session.Get<RegisterModel>("AuthUser").Role.ToString() == "Admin")
+                                                {
+                                                    <td>
+
+                                                        <form method="post">
+                                                            <button type="submit" asp-page-handler="DeleteGlobal" asp-route-id="@global.Id" style=" padding: 0;
                                                                                     border: none;
                                                                                     font: inherit;
                                                                                     color: inherit;
@@ -135,32 +154,40 @@
                                                                                     color: #C0C0C0;
                                                                                     font-size: 100%;
                                                                                         ">
-                                                        [X]
-                                                    </button>
-                                                </form>
-                                            </td>
+                                                                [X]
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                }
+                                            }
                                         </tr>
                                     }
-                                    <form method="post">
-                                        <tr>
-                                            <td colspan="2" align="center">
-                                                <label>picture</label>
-                                                <input type='text' asp-for="Global.Picture" />
-                                                <span class="alert-danger" asp-validation-for="Global.Picture"></span>
-                                                <br />
-                                                <label>name</label>
-                                                <input type='text' asp-for="Global.Name" />
-                                                <span class="alert-danger" asp-validation-for="Global.Name"></span>
-                                            </td>
-                                            <td colspan="2" align="center">
-                                                <input type='number' asp-for="Global.Money" />
-                                                <span class="alert-danger" asp-validation-for="Global.Money"></span>
-                                                <button type="submit" style="width:18px; padding:3px;" asp-page-handler="Global">+</button>
-                                            </td>
-                                        </tr>
+                                    @if (HttpContext.Session.Get<string>("AuthReady") == "true")
+                                    {
+                                        @if (HttpContext.Session.Get<RegisterModel>("AuthUser").Role.ToString() == "Admin")
+                                        {
+                                            <form method="post">
+                                                <tr>
+                                                    <td colspan="2" align="center">
+                                                        <label>picture</label>
+                                                        <input type='text' asp-for="Global.Picture" />
+                                                        <span class="alert-danger" asp-validation-for="Global.Picture"></span>
+                                                        <br />
+                                                        <label>name</label>
+                                                        <input type='text' asp-for="Global.Name" />
+                                                        <span class="alert-danger" asp-validation-for="Global.Name"></span>
+                                                    </td>
+                                                    <td colspan="2" align="center">
+                                                        <input type='number' asp-for="Global.Money" />
+                                                        <span class="alert-danger" asp-validation-for="Global.Money"></span>
+                                                        <button type="submit" style="width:18px; padding:3px;" asp-page-handler="Global">+</button>
+                                                    </td>
+                                                </tr>
 
-                                    </form>
-                                </tbody>
+                                            </form>
+                                            }
+                                        }
+                                        </tbody>
                             </table>
                         </div>
 
@@ -184,9 +211,13 @@
                                         <tr>
                                             <td colspan="2"><img src="@team.Picture" width="40%"> <hr><h3><b>@team.Name</b></h3></td>
                                             <td colspan="2">Призовые: $@String.Format("{0:0,0}", team.Money)  </td>
-                                            <td>
-                                                <form method="post">
-                                                    <button type="submit" asp-page-handler="DeleteTop" asp-route-id="@team.Id" style=" padding: 0;
+                                            @if (HttpContext.Session.Get<string>("AuthReady") == "true")
+                                            {
+                                                @if (HttpContext.Session.Get<RegisterModel>("AuthUser").Role.ToString() == "Admin")
+                                                {
+                                                    <td>
+                                                        <form method="post">
+                                                            <button type="submit" asp-page-handler="DeleteTop" asp-route-id="@team.Id" style=" padding: 0;
                                                                                     border: none;
                                                                                     font: inherit;
                                                                                     color: inherit;
@@ -194,32 +225,40 @@
                                                                                     color: #C0C0C0;
                                                                                     font-size: 100%;
                                                                                         ">
-                                                        [X]
-                                                    </button>
-                                                </form>
-                                            </td>
+                                                                [X]
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                }
+                                            }
                                         </tr>
                                     }
-                                    <form method="post">
-                                        <tr>
-                                            <td colspan="2" align="center">
-                                                <label>picture</label>
-                                                <input type='text' asp-for="Topteam.Picture" />
-                                                <span class="alert-danger" asp-validation-for="Topteam.Picture"></span>
-                                                <br />
-                                                <label>name</label>
-                                                <input type='text' asp-for="Topteam.Name" />
-                                                <span class="alert-danger" asp-validation-for="Topteam.Name"></span>
-                                            </td>
-                                            <td colspan="2" align="center">
-                                                <input type='number' asp-for="Topteam.Money" />
-                                                <span class="alert-danger" asp-validation-for="Topteam.Money"></span>
-                                                <button type="submit" style="width:18px; padding:3px;" asp-page-handler="Top">+</button>
-                                            </td>
-                                        </tr>
+                                    @if (HttpContext.Session.Get<string>("AuthReady") == "true")
+                                    {
+                                        @if (HttpContext.Session.Get<RegisterModel>("AuthUser").Role.ToString() == "Admin")
+                                        {
+                                            <form method="post">
+                                                <tr>
+                                                    <td colspan="2" align="center">
+                                                        <label>picture</label>
+                                                        <input type='text' asp-for="Topteam.Picture" />
+                                                        <span class="alert-danger" asp-validation-for="Topteam.Picture"></span>
+                                                        <br />
+                                                        <label>name</label>
+                                                        <input type='text' asp-for="Topteam.Name" />
+                                                        <span class="alert-danger" asp-validation-for="Topteam.Name"></span>
+                                                    </td>
+                                                    <td colspan="2" align="center">
+                                                        <input type='number' asp-for="Topteam.Money" />
+                                                        <span class="alert-danger" asp-validation-for="Topteam.Money"></span>
+                                                        <button type="submit" style="width:18px; padding:3px;" asp-page-handler="Top">+</button>
+                                                    </td>
+                                                </tr>
 
-                                    </form>
-                                </tbody>
+                                            </form>
+                                            }
+                                        }
+                                        </tbody>
                             </table>
                         </div>
                     </div>
@@ -241,15 +280,21 @@
                                     <th colspan="3" scope="col">Игроки</th>
                                 </tr>
                             </thead>
-                            <tbody>@{ int i = 1;}
+                            <tbody>
+                                @{ int i = 1;}
                                 @foreach (var player in Model.TopPlayersList)
                                 {
-                                    
+
                                     <tr>
-                                        <th scope="row">@i</th>@{ i++;}
+                                        <th scope="row">@i</th>
+                                        @{ i++;}
                                         <th colspan="3" scope="col">
-                                            <form method="post">
-                                                <button type="submit" asp-page-handler="DeletePlayer" asp-route-id="@player.Id" style=" padding: 0;
+                                            @if (HttpContext.Session.Get<string>("AuthReady") == "true")
+                                            {
+                                                @if (HttpContext.Session.Get<RegisterModel>("AuthUser").Role.ToString() == "Admin")
+                                                {
+                                                    <form method="post">
+                                                        <button type="submit" asp-page-handler="DeletePlayer" asp-route-id="@player.Id" style=" padding: 0;
                                                                                     border: none;
                                                                                     font: inherit;
                                                                                     color: inherit;
@@ -257,10 +302,12 @@
                                                                                     color: #C0C0C0;
                                                                                     font-size: 80%;
                                                                                         ">
-                                                    [X]
-                                                </button>
-                                            </form>
-                                            <img  id="Player_1" src="@player.Picture" width="200px;" height="200px;"> <!-- К id можно присвоить картинку из БД? -->
+                                                            [X]
+                                                        </button>
+                                                    </form>
+                                                }
+                                            }
+                                            <img id="Player_1" src="@player.Picture" width="200px;" height="200px;"> <!-- К id можно присвоить картинку из БД? -->
                                             <h3>@player.Name</h3> <!-- в <h3>...</h3> инфа из БД -->
                                             <p>
                                                 <!-- в <p>...</p> инфа из БД -->
@@ -280,57 +327,63 @@
                                 }
                             </tbody>
                         </table>
-                        <form method="post">
-                            <h6>
-                                <span>New Top Player</span>
-                            </h6>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="panel">
-                                            <div class="panel-body">
-                                                <div class="col-md-12" style="margin-top:15px;">
-                                                    <label asp-for="Topplayer.Name" style="font-weight:bold;"></label>
-                                                    <input type='text' asp-for="Topplayer.Name" />
-                                                    <span class="alert-danger" asp-validation-for="Topplayer.Name"></span>
-                                                </div>
-                                                <div class="col-md-12" style="margin-top:15px;">
-                                                    <label asp-for="Topplayer.Team" style="font-weight:bold;"></label>
-                                                    <input type='text'  asp-for="Topplayer.Team"></input>
-                                                    <span class="alert-danger" asp-validation-for="Topplayer.Team"></span>
-                                                </div>
-                                                <div class="col-md-12" style="margin-top:15px;">
-                                                    <label asp-for="Topplayer.Date" style="font-weight:bold;"></label>
-                                                    <input type='datetime' asp-for="Topplayer.Date"></input>
-                                                    <span class="alert-danger" asp-validation-for="Topplayer.Date"></span>
-                                                </div>
-                                                <div class="col-md-12" style="margin-top:15px;">
-                                                    <label asp-for="Topplayer.Country" style="font-weight:bold;"></label>
-                                                    <input type='text' asp-for="Topplayer.Country" />
-                                                    <span class="alert-danger" asp-validation-for="Topplayer.Country"></span>
-                                                </div>
-                                                <div class="col-md-12" style="margin-top:15px;">
-                                                    <label asp-for="Topplayer.Picture" style="font-weight:bold;"></label>
-                                                    <input type='text'  asp-for="Topplayer.Picture" />
-                                                    <span class="alert-danger" asp-validation-for="Topplayer.Picture"></span>
-                                                </div>
+                        @if (HttpContext.Session.Get<string>("AuthReady") == "true")
+                        {
+                            @if (HttpContext.Session.Get<RegisterModel>("AuthUser").Role.ToString() == "Admin")
+                            {
+                                <form method="post">
+                                    <h6>
+                                        <span>New Top Player</span>
+                                    </h6>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="panel">
+                                                    <div class="panel-body">
+                                                        <div class="col-md-12" style="margin-top:15px;">
+                                                            <label asp-for="Topplayer.Name" style="font-weight:bold;"></label>
+                                                            <input type='text' asp-for="Topplayer.Name" />
+                                                            <span class="alert-danger" asp-validation-for="Topplayer.Name"></span>
+                                                        </div>
+                                                        <div class="col-md-12" style="margin-top:15px;">
+                                                            <label asp-for="Topplayer.Team" style="font-weight:bold;"></label>
+                                                            <input type='text' asp-for="Topplayer.Team"></input>
+                                                            <span class="alert-danger" asp-validation-for="Topplayer.Team"></span>
+                                                        </div>
+                                                        <div class="col-md-12" style="margin-top:15px;">
+                                                            <label asp-for="Topplayer.Date" style="font-weight:bold;"></label>
+                                                            <input type='datetime' asp-for="Topplayer.Date"></input>
+                                                            <span class="alert-danger" asp-validation-for="Topplayer.Date"></span>
+                                                        </div>
+                                                        <div class="col-md-12" style="margin-top:15px;">
+                                                            <label asp-for="Topplayer.Country" style="font-weight:bold;"></label>
+                                                            <input type='text' asp-for="Topplayer.Country" />
+                                                            <span class="alert-danger" asp-validation-for="Topplayer.Country"></span>
+                                                        </div>
+                                                        <div class="col-md-12" style="margin-top:15px;">
+                                                            <label asp-for="Topplayer.Picture" style="font-weight:bold;"></label>
+                                                            <input type='text' asp-for="Topplayer.Picture" />
+                                                            <span class="alert-danger" asp-validation-for="Topplayer.Picture"></span>
+                                                        </div>
 
-                                                <div class="text-center col-md-12" style="margin-top:35px;">
-                                                    <button class="btn btn-primary btn-sx" type="submit" asp-page-handler="Player"><i class="glyphicon glyphicon-plus" ></i> Add</button>
-                                                    
+                                                        <div class="text-center col-md-12" style="margin-top:35px;">
+                                                            <button class="btn btn-primary btn-sx" type="submit" asp-page-handler="Player"><i class="glyphicon glyphicon-plus"></i> Add</button>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
+                                }
+                            }
+
                             </div>
-                        </form>
-
-                    </div>
-                </div>
             </div>
-
         </div>
+
     </div>
+</div>
 </main>
 

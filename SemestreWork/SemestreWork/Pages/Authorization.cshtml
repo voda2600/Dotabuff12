@@ -1,0 +1,125 @@
+﻿@page
+@model SemestreWork.Pages.AuthorizationModel
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en" dir="ltr" style="height:100%;">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" conыtent="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+    <link rel="shortcut icon" href="~/img/Logo.png" type="image/png">
+    <title>Авторизация</title>
+</head>
+
+<body style="        height: 100%;
+        background: #200122;
+        background: -webkit-linear-gradient(to bottom, #A52A2A, #330d36);
+        background: linear-gradient(to bottom, #A52A2A, #330d36);
+">
+
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-md navbar-inverse navbar-fixed-top
+    navbar-dark justify-content-center" id="nav1">
+        <a class="navbar-brand" href="/Home"
+           style="margin-left: 6rem;">
+            <stroke style="font: 25px 'Raleway', sans-serif;
+        text-shadow: 1px 1px 2px black, 0 0 1em #FF00FF;">AnyMeta</stroke>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Home" style="margin-left: 1.2rem;">Домой</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link py-2 d-none d-md-inline-block" href="/About">Подробно</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- main -->
+    <main class="main align-self-center" align="middle"
+          style="        padding-top: 0rem;
+        padding-bottom: 0rem;
+        margin-left: 0rem;" >
+  
+
+        <div class="container" align="left">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <div class="card" style="margin-top: 7rem;">
+                        <div class="card-header">
+                            <div align="middle" class="h4">Авторизация:</div>
+                        </div>
+                        <div class="card-body">
+                            <form name="auth" method="POST">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Почта:</label>
+                                    <input type="email" asp-for="Anon.Email" class="form-control" id="exampleInputEmail1"
+                                           aria-describedby="emailHelp" placeholder="Введите почту" required>
+                                    <small id="emailHelp" class="form-text text-muted" style="margin-left: 1rem;">
+                                        Мы никогда никому не передадим вашу электронную почту
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputPassword" id="pass">Пароль</label>
+                                    <input type="password" asp-for="Anon.Password" class="form-control"
+                                           id="InputPassword" placeholder="Введите пароль" required>
+                                    <small id="emailHelp" class="alert" style="margin-left: 1rem;" >
+                                        <font color="red">@Model.Message</font>
+                                    </small>
+                                </div>
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input"
+                                           id="exampleCheck" style="margin-top: 0.45rem;">
+                                    <label class="form-check-label" for="exampleCheck" style="margin-left: 1.1rem;">
+                                        Запомнить меня
+                                    </label>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Подтвердить</button>
+                                </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+
+</body>
+</html>
+
