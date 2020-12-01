@@ -29,6 +29,12 @@ namespace SemestreWork
             {
                 options.Conventions.AddPageRoute("/Home", "");
             });
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".MyApp.Session";
+                options.IdleTimeout = TimeSpan.FromSeconds(3600);
+            });
             services.AddSingleton<IConfiguration>(Configuration);
 
             services.AddTransient<INewsRepository, NewsRepository>();
@@ -37,6 +43,7 @@ namespace SemestreWork
             services.AddTransient<IClobalCyberRepository, GlobalCyberRepository>();
             services.AddTransient<ITopTeamRepository, TopTeamRepository>();
             services.AddTransient<TopPlayersRepository>();
+            services.AddTransient<IRegisterRepository,RegisterRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,7 +66,7 @@ namespace SemestreWork
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

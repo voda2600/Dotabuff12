@@ -74,55 +74,42 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="exampleInputNickname">Псевдоним:</label>
-                                        <input required="" type="text" class="form-control" id="exampleInputNickname"
+                                        <input asp-for="user.Nick" type="text" class="form-control" id="exampleInputNickname"
                                                pattern="^(?!.*\.\.)(?!\.)(?!.*\.$)(?!\d+$)[a-zA-Z0-9.]{5,15}$" placeholder="Введите псевдоним...">
+                                        <span class="alert-danger" asp-validation-for="user.Nick"></span>
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="exampleInputEmail1">Почта:</label>
-                                        <input required="" type="email" class="form-control" id="exampleInputEmail1"
+                                        <input asp-for="user.Email" required="" type="email" class="form-control" id="exampleInputEmail1"
                                                placeholder="Введите почту...">
+                                        <span class="alert-danger" asp-validation-for="user.Email"></span>
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="exampleInputHero">Ваш любимый герой:</label>
-                                        <select required="" id="exampleInputHero" class="form-control">
-                                            <option selected>Выберите...</option>
-                                            <option>Clinkz</option>
-                                            <option>Underlord</option>
-                                            <option>Spectre</option>
-                                            <option>Zeus</option>
-                                            <option>Ogre Magi</option>
-                                            <option>Arc Warden</option>
-                                            <option>Night Stalker</option>
-                                            <option>Dark Seer</option>
-                                            <option>Undying</option>
-                                            <option>Warlock</option>
-                                            <option>Wraith King</option>
-                                            <option>Bloodseeker</option>
-                                        </select>
+                                        <select asp-for="user.Hero" class="form-control"><option>Любые</option><option>Другие</option><option >Abaddon</option><option>Alchemist</option><option>Ancient Apparition</option><option >Anti-Mage</option><option>Arc Warden</option><option>Axe</option><option >Bane</option><option>Batrider</option><option >Beastmaster</option><option >Bloodseeker</option><option >Bounty Hunter</option><option >Brewmaster</option><option >Bristleback</option><option >Broodmother</option><option >Centaur Warrunner</option><option >Chaos Knight</option><option>Chen</option><option >Clinkz</option><option >Clockwerk</option><option>Crystal Maiden</option><option>Dark Seer</option><option >Dark Willow</option><option >Dazzle</option><option >Death Prophet</option><option >Disruptor</option><option >Doom</option><option >Dragon Knight</option><option >Drow Ranger</option><option >Earth Spirit</option><option>Earthshaker</option><option >Elder Titan</option><option >Ember Spirit</option><option >Enchantress</option><option >Enigma</option><option >Faceless Void</option><option>Grimstroke</option><option >Gyrocopter</option><option >Huskar</option><option >Invoker</option><option >Jakiro</option><option >Juggernaut</option><option >Keeper of the Light</option><option >Kunkka</option><option >Legion Commander</option><option >Leshrac</option><option >Lich</option><option >Lifestealer</option><option >Lina</option><option>Lion</option><option >Lone Druid</option><option >Luna</option><option>Lycan</option><option >Magnus</option><option>Mars</option><option >Medusa</option><option >Meepo</option><option >Mirana</option><option >Monkey King</option><option >Morphling</option><option >Naga Siren</option><option>Natures Prophet</option><option>Necrophos</option><option>Night Stalker</option><option >Nyx Assassin</option><option >Ogre Magi</option><option  >Omniknight</option><option >Oracle</option><option  >Outworld Devourer</option><option  >Pangolier</option><option >Phantom Assassin</option><option >Phantom Lancer</option><option >Phoenix</option><option >Puck</option><option >Pudge</option><option >Pugna</option><option>Queen of Pain</option><option >Razor</option><option >Riki</option><option >Rubick</option><option >Sand King</option><option  >Shadow Demon</option><option >Shadow Fiend</option><option >Shadow Shaman</option><option  >Silencer</option><option >Skywrath Mage</option><option >Slardar</option><option >Slark</option><option >Snapfire</option><option >Sniper</option><option >Spectre</option><option >Spirit Breaker</option><option >Storm Spirit</option><option>Sven</option><option >Techies</option><option  >Templar Assassin</option><option  >Terrorblade</option><option  >Tidehunter</option><option >Timbersaw</option><option >Tinker</option><option   >Tiny</option><option >Treant Protector</option><option  >Troll Warlord</option><option  >Tusk</option><option  >Underlord</option><option  >Undying</option><option  >Ursa</option><option  >Vengeful Spirit</option><option  >Venomancer</option><option >Viper</option><option  >Visage</option><option  >Warlock</option><option  >Weaver</option><option  >Windranger</option><option  >Winter Wyvern</option><option>Witch Doctor</option><option  >Wraith King</option><option>Zeus</option></select>
                                     </div>
-
+                                    <div class="form-group col-md-6">
+                                        <label for="InputPassword">Пароль:</label>
+                                        <input asp-for="user.Password" type="password" class="form-control" pattern="(?=^.{6,}$)(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).*" placeholder="Введите пароль..."
+                                               title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 6 и более символов">
+                                    </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleInputHero">Ваш рейтинг:</label>
-                                        <select required="" id="exampleInputHero" class="form-control">
+                                        <select asp-for="user.MMR" id="exampleInputHero" class="form-control">
                                             <option selected>Выберите...</option>
-                                            <option><1000 ММР</option>
+                                            <option>< 1000 ММР</option>
                                             <option>1000-2000 ММР</option>
                                             <option>2000-3000 ММР</option>
                                             <option>3000-4000 ММР</option>
                                             <option>4000-5000 ММР</option>
-                                            <option>>5000 ММР</option>
+                                            <option>5000-6000 ММР</option>
+                                            <option>> 6000 ММР</option>
                                         </select>
                                     </div>
 
-                                    <div class="form-group col-md-6">
-                                        <label for="InputPassword">Пароль:</label>
-                                        <input required="" type="password" name="InputPassword"
-                                               class="form-control" id="InputPassword"
-                                               pattern="(?=^.{6,}$)(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).*" placeholder="Введите пароль..."
-                                               title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 6 и более символов">
-                                    </div><br>
+                                    <br>
 
                                     <div class="form-group col-md-12">
                                         <hr>
