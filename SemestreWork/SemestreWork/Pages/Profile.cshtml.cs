@@ -11,12 +11,18 @@ namespace SemestreWork.Pages
 {
     public class ProfileModel : PageModel
     {
-
+        IUserPosstRepository _userPostsRepository;
         IRegisterRepository _usersRepository;
-        public ProfileModel(IRegisterRepository usersRepository)
+        public ProfileModel(IRegisterRepository usersRepository, IUserPosstRepository userPostsRepository)
         {
             _usersRepository = usersRepository;
+            _userPostsRepository = userPostsRepository;
         }
+
+        [BindProperty]
+        public List<UserPosts> userPostsList { get; set; }
+        [BindProperty]
+        public UserPosts userPost { get; set; }
 
         [BindProperty]
         public RegisterModel user { get; set; }
@@ -26,6 +32,21 @@ namespace SemestreWork.Pages
         {
             Id = id;
             user = _usersRepository.GetUser(id);
+            userPostsList = _userPostsRepository.GetList(id);
+        }
+        public IActionResult OnPost(int id)
+        {
+            userPost.UserId = id;
+            if (ModelState.IsValid)
+            {
+                var count = _userPostsRepository.Add(userPost);
+                if (count > 0)
+                {
+                    return Redirect("/Profile/" + id);
+                }
+            }
+
+            return Page();
         }
     }
 }
