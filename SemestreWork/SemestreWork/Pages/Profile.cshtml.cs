@@ -64,6 +64,25 @@ namespace SemestreWork.Pages
 
             return Page();
         }
+        public IActionResult OnPostEdit(int id)
+        {
+            var userEdit = _usersRepository.GetUser(id);
+            userEdit.Hero = user.Hero;
+            userEdit.MMR = user.MMR;
+            userEdit.Image = user.Image;
+            userEdit.Nick = user.Nick;
+            user = userEdit;
+            if (ModelState.IsValid)
+            {
+                var count = _usersRepository.EditUser(userEdit);
+                if (count > 0)
+                {
+                    return Redirect("/Profile/" + id);
+                }
+            }
+
+            return Redirect("/Profile/" + id);
+        }
         public IActionResult OnPostSendComment(int id)
         {
             var a = HttpContext.Session.Get<RegisterModel>("AuthUser");
@@ -72,6 +91,32 @@ namespace SemestreWork.Pages
             if (ModelState.IsValid)
             {   
                 var count = _commentsRepository.Add(comment);
+                if (count > 0)
+                {
+                    return Redirect("/Profile/" + id);
+                }
+            }
+
+            return Redirect("/Profile/" + id);
+        }
+        public IActionResult OnPostDeletePost(int id,int PostId)
+        {
+            if (PostId > 0)
+            {
+                var count = _userPostsRepository.DeletePost(PostId, HttpContext.Session.Get<RegisterModel>("AuthUser").Id);
+                if (count > 0)
+                {
+                    return Redirect("/Profile/" + id);
+                }
+            }
+
+            return Redirect("/Profile/" + id);
+        }
+        public IActionResult OnPostDeleteComment(int id,int ComId)
+        {
+            if (ComId > 0)
+            {
+                var count = _commentsRepository.DeleteComment(ComId);
                 if (count > 0)
                 {
                     return Redirect("/Profile/" + id);

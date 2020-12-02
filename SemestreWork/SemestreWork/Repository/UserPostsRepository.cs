@@ -28,7 +28,7 @@ namespace SemestreWork.Repository
                 try
                 {
                     con.Open();
-                    var query = "INSERT INTO UserPosts(UserId, Text, Picture, Time) VALUES(@UserId, @Text,@Picture,@Time);";
+                    var query = "INSERT INTO UserPosts(UserId, Text, Picture, Time,Intro) VALUES(@UserId, @Text,@Picture,@Time,@Intro);";
                     count = con.Execute(query, news);
                 }
                 catch (Exception ex)
@@ -80,7 +80,7 @@ namespace SemestreWork.Repository
                 try
                 {
                     con.Open();
-                    var query = "UPDATE UserPosts SET Text = @Text, Picture = @Picture WHERE (Id = @Id AND UserId=@UserId)";
+                    var query = "UPDATE UserPosts SET Text = @Text, Picture = @Picture, Intro=@Intro WHERE (Id = @Id AND UserId=@UserId)";
                     count = con.Execute(query, news);
                 }
                 catch (Exception ex)

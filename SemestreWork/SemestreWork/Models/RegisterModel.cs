@@ -15,5 +15,6 @@ namespace SemestreWork.Models
         public string Hero { get; set; }
         public string MMR { get; set; }
         public string Role { get; set; }
+        public string Image { get; set; }
     }
 }
