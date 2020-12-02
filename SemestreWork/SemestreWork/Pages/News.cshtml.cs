@@ -16,11 +16,17 @@ namespace SemestreWork.Pages
     public class NewsModel : PageModel
     {
         INewsRepository _Repository;
-        public NewsModel(INewsRepository Repository)
+        ICommentsRepository _commentsRepository;    
+        public NewsModel(INewsRepository Repository,ICommentsRepository commentsRepository)
         {
             _Repository = Repository;
+            _commentsRepository = commentsRepository;
         }
 
+        [BindProperty]
+        public Comments comment { get; set; }
+
+        public List<Comments> postsComments { get; set; }
 
         [BindProperty]
         public NewsPost news { get; set; }
@@ -36,6 +42,11 @@ namespace SemestreWork.Pages
                news = _Repository.GetNews(id);
                HTMLtext = HttpUtility.HtmlDecode(news.Text);
                news.Text = HTMLtext;
+            if (postsComments == null)
+            {
+                postsComments = new List<Comments>();
+            }
+            postsComments = _commentsRepository.GetList(-id);
         }
         public IActionResult OnPost()
         {
@@ -53,6 +64,36 @@ namespace SemestreWork.Pages
             return Page();
         }
 
+        public IActionResult OnPostSendComment(int id)
+        {
+            var a = HttpContext.Session.Get<RegisterModel>("AuthUser");
+            comment.CreatorId = a.Id;
+            comment.CreatorName = a.Nick;
+            comment.PostId = -id;
+            if (ModelState.IsValid)
+            {
+                var count = _commentsRepository.Add(comment);
+                if (count > 0)
+                {
+                    return Redirect("/News/"+id);
+                }
+            }
+
+            return Redirect("/News/" + id);
+        }
+        public IActionResult OnPostDeleteComment(int id, int ComId)
+        {
+            if (ComId > 0)
+            {
+                var count = _commentsRepository.DeleteComment(ComId);
+                if (count > 0)
+                {
+                    return Redirect("/News/" + id);
+                }
+            }
+
+            return Redirect("/News/" + id);
+        }
         public IActionResult OnPostDelete(int id)
         {
             if (id > 0)

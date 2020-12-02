@@ -43,7 +43,7 @@
                         @Html.Raw(str)
                     </div>
                 </div>
-              
+
                 @if (HttpContext.Session.Get<string>("AuthReady") == "true")
                 {
                     @if (HttpContext.Session.Get<RegisterModel>("AuthUser").Role.ToString() == "Admin")
@@ -86,27 +86,65 @@
                                 </div>
                             </div>
                         </form>
+                    }
+                } 
+                
+                @foreach (var listComments in Model.postsComments)
+                {
+
+                    @if (HttpContext.Session.Get<string>("AuthReady") == "true")
+                    {
+                        @if (HttpContext.Session.Get<RegisterModel>("AuthUser").Role == "Admin")
+                        {
+                            <form method="post">
+                                <button type="submit" asp-page-handler="DeleteComment" asp-route-ComId="@listComments.Id" style=" padding: 0;
+                                                                                    padding-left:90%;
+                                                                                    border: none;
+                                                                                    font: inherit;
+                                                                                    color: inherit;
+                                                                                    background-color: transparent;
+                                                                                    color: #C0C0C0;
+                                                                                    font-size: 100%;
+                                                                                                 ">
+                                    [X]
+                                </button>
+                            </form>
                         }
                     }
-                        <div class="timeline-comment-box" style="margin-top: 2rem;">
-                            <div class="user">
-                                <img src="~/img/noavatar.png" alt="Your avatar" width="5%">
-                            </div>
-                            <div class="input">
-                                <form action="">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control rounded-corner" placeholder="Напишите что-нибудь...">
-                                        <span class="input-group-btn p-l-10">
-                                            <button style="margin-left: 1rem;" class="btn btn-primary f-s-12 rounded-corner" type="button">
-                                                Отправить
-                                            </button>
-                                        </span>
-                                    </div>
-                                </form>
-                            </div>
+                    <div style="display: inline-block;">
+
+                        <div class="timeline-header">
+
+                            <a class="nav-link" href="~/Profile/@listComments.CreatorId" style="display: inline-block;">
+                                <img src="~/img/noavatar.png" alt="Your avatar" width="30px;30px;" style="display: inline-block;" />
+                                <span class="username">@listComments.CreatorName</span>
+                            </a>
                         </div>
+                        @listComments.Text
 
                     </div>
+
+                }
+                <div class="timeline-comment-box" style="margin-top: 2rem;">
+                    <div class="user">
+                        <img src="~/img/noavatar.png" alt="Your avatar" width="5%">
+                    </div>
+                    <div class="input">
+                        <form method="post">
+                            <div class="input-group">
+                                <input type="text" asp-for="comment.Text" class="form-control rounded-corner" placeholder="Напишите что-нибудь...">
+                                <span class="alert-danger" asp-validation-for="comment.Text"></span>
+                                <div class="input-group-btn p-l-10">
+                                    <button asp-page-handler="SendComment" style="margin-left: 1rem;" class="btn btn-primary f-s-12 rounded-corner" type="submit">
+                                        Отправить
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
 
             <div class="col-2"></div>
         </div>
