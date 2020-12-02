@@ -28,7 +28,7 @@ namespace SemestreWork.Repository
                 try
                 {
                     con.Open();
-                    var query = "INSERT INTO UserPosts(UserId, Text, Picture) VALUES(@UserId, @Text,@Picture);";
+                    var query = "INSERT INTO UserPosts(UserId, Text, Picture, Time) VALUES(@UserId, @Text,@Picture,@Time);";
                     count = con.Execute(query, news);
                 }
                 catch (Exception ex)
@@ -95,6 +95,7 @@ namespace SemestreWork.Repository
                 return count;
             }
         }
+        
 
         public List<UserPosts> GetList(int UserId)
         {

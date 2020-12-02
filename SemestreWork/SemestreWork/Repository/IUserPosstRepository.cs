@@ -8,6 +8,7 @@ namespace SemestreWork.Repository
 {
     public interface IUserPosstRepository
     {
+     
         int Add(UserPosts product);
 
         List<UserPosts> GetList(int UserID);

@@ -4,6 +4,7 @@
     ViewData["Title"] = "Profile";
 }
 @using SemestreWork.Models;
+@using System.Linq;
 <!-- main -->
 <main class="main align-self-center">
     <div class="container">
@@ -36,159 +37,139 @@
                                     <ul class="profile-header-tab nav nav-tabs" style="background-image: url(/img/v2QsDef.jpeg); background-repeat: no-repeat;background-size: 100% 100%;">
                                         <li class="nav-item">
                                             <div style="font-size: 18px;"><h2 style="color:white;">Посты:</h2></div>
-                                            @foreach (UserPosts myPost in Model.userPostsList)
-                                            {
-                                                <div class="card">
-                                                        <!--photo-->
-                                                    <div class="card-body">      
-                                                        <p>
-                                                            @myPost.Text
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <br />
-                                                <br />
-                                            }
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                                            <form method="post">
 
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-2"></div>
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="panel">
+                                                                <div class="panel-body">
 
-                                    <div class="col-8">
+                                                                    <div class="col-md-12" style="margin-top:15px;">
+                                                                        <label asp-for="userPost.Text" style="font-weight:bold;"></label>
+                                                                        <textarea style="width:400px;" type='text' class='form-control' asp-for="userPost.Text"></textarea>
+                                                                        <span class="alert-danger" asp-validation-for="userPost.Text"></span>
+                                                                    </div>
+                                                                    <div class="col-md-12" style="margin-top:15px;">
+                                                                        <label asp-for="userPost.Picture" style="font-weight:bold;"></label>
+                                                                        <input type='text' class='form-control' asp-for="userPost.Picture">
+                                                                        <span class="alert-danger" asp-validation-for="userPost.Picture"></span>
+                                                                    </div>
 
-                                        <h2 align="middle" style="margin-top: 2rem;">Редактор постов</h2>
 
-                                        <form method="post">
-                                        
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="panel">
-                                                            <div class="panel-body">
+                                                                    <div class="text-center col-md-12" style="margin-top:35px;">
+                                                                        <button class="btn btn-primary btn-sx" type="submit"><i class="glyphicon glyphicon-plus"></i> Post </button>
 
-                                                                <div class="col-md-12" style="margin-top:15px;">
-                                                                    <label asp-for="userPost.Text" style="font-weight:bold;"></label>
-                                                                    <textarea style="width:400px;" type='text' class='form-control' asp-for="userPost.Text"></textarea>
-                                                                    <span class="alert-danger" asp-validation-for="userPost.Text"></span>
-                                                                </div>
-                                                                <div class="col-md-12" style="margin-top:15px;">
-                                                                    <label asp-for="userPost.Picture" style="font-weight:bold;"></label>
-                                                                    <input type='text' class='form-control' asp-for="userPost.Picture">
-                                                                    <span class="alert-danger" asp-validation-for="userPost.Picture"></span>
-                                                                </div>
-                                                               
-
-                                                                <div class="text-center col-md-12" style="margin-top:35px;">
-                                                                    <button class="btn btn-primary btn-sx" type="submit"><i class="glyphicon glyphicon-plus"></i> Опубликовать </button>
-
+                                                                    </div>
+                                                                    <br />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </form>
-
-          
-                                    </div>
-
-                                    <div class="col-2"></div>
+                                            </form>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </div><br /><hr>
+                            </div>
+<hr>
 
                             <!-- Profile content -->
                             <div class="profile-content" style="margin-top: 2rem;">
                                 <div class="tab-content p-0">
                                     <div class="tab-pane fade active show" id="profile-post">
+                                   
                                         <ul class="timeline">
-                                            <li>
-                                                <div class="timeline-time">
-                                                    <span class="date">Сегодня</span> <!-- Нужна логика для даты -->
-                                                    <span class="time">13:54</span> <!-- Нужна логика для времени -->
-                                                </div>
-                                                <div class="timeline-icon">
-                                                    <a href="javascript:;">&nbsp;</a>
-                                                </div>
-                                                <div class="timeline-body">
-                                                    <div class="timeline-header">
-                                                        <span class="userimage">
-                                                            <img src="img\noavatar.png" alt="Your avatar">
-                                                        </span>
-                                                        <span class="username">
-                                                            <a href="javascript:;">Dias Bolatov</a> <!-- Ну тут никнейм (псевдоним) от айдишника -->
-                                                            <small></small>
-                                                        </span>
+                                            @foreach (UserPosts myPost in Model.userPostsList)
+                                            {
+                                                <li>
+                                                    <div class="timeline-time">
+                                                        <span class="date">@myPost.Time.ToString("M")</span> <!-- Нужна логика для даты -->
+                                                        <span class="time">@myPost.Time.ToString("T")</span> <!-- Нужна логика для времени -->
                                                     </div>
-                                                    <div class="timeline-content">
-                                                        <p style="font-size: 18px">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus.
-                                                            Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
-                                                        </p>
+                                                    <div class="timeline-icon">
+                                                        <a href="javascript:;">&nbsp;</a>
                                                     </div>
-
-                                                    <!-- Количество лайков и комментариев поста -->
-                                                    <div class="timeline-likes">
-                                                        <div class="stats-right" style="font-size: 15px">
-                                                            <span class="stats-text">1 Комментарий</span>
-                                                        </div>
-                                                        <div class="stats">
-                                                            <span class="fa-stack fa-fw stats-icon">
-                                                                <i class="fa fa-circle fa-stack-2x text-danger"></i>
-                                                                <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
+                                                    <div class="timeline-body">
+                                                        <div class="timeline-header">
+                                                            <span class="userimage">
+                                                                <img src="~/img/noavatar.png" alt="Your avatar">
                                                             </span>
-                                                            <span class="fa-stack fa-fw stats-icon">
-                                                                <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                                                <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
+                                                            <span class="username">
+                                                                <a href="javascript:;"><h4>@Model.user.Nick</h4></a> <!-- Ну тут никнейм (псевдоним) от айдишника -->
+                                                                <small></small>
                                                             </span>
-                                                            <span class="stats-total" style="font-size: 20px">2</span>
                                                         </div>
-                                                    </div>
-                                                    <div class="timeline-footer">
-                                                        <a href="javascript:;" class="m-r-15 text-inverse-lighter">
-                                                            <i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Лайк
-                                                        </a>
-                                                        <a href="javascript:;" class="m-r-15 text-inverse-lighter">
-                                                            <i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Комментарии
-                                                        </a>
-                                                    </div>
+                                                        <div class="timeline-content">
+                                                            <p style="font-size: 18px">
+                                                                <b>@myPost.Text</b> 
+                                                            </p>
+                                                        </div>
 
-                                                    <!-- Комментарий -->
-                                                    <div class="timeline-comment-box">
-                                                        <div class="user">
-                                                            <img src="img\noavatar.png" alt="Your avatar">
+                                                        <!-- Количество лайков и комментариев поста -->
+                                                        <div class="timeline-likes">
+                                                            <div class="stats-right" style="font-size: 15px">
+                                                                <span class="stats-text"><h5><b>Комментарии:</b></h5></span>
+                                                            </div>
+                                                            <div class="stats">
+                                                                <span class="fa-stack fa-fw stats-icon">
+                                                                    <i class="fa fa-circle fa-stack-2x text-danger"></i>
+                                                                    <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
+                                                                </span>
+                                                                <span class="fa-stack fa-fw stats-icon">
+                                                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                                                    <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
+                                                                </span>
+                                                            
+                                                            </div>
                                                         </div>
-                                                        <div class="input">
-                                                            <form action="">
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control rounded-corner" placeholder="Напишите что-нибудь...">
-                                                                    <span class="input-group-btn p-l-10">
-                                                                        <button style="margin-left: 1rem;" class="btn btn-primary f-s-12 rounded-corner" type="button">
-                                                                            Отправить
-                                                                        </button>
-                                                                    </span>
+                                                        @foreach (var listComments in Model.postsComments.Where(x => x.PostId == myPost.Id))
+                                                        {
+                                                        
+                                                                
+                                                                  
+                                                              
+                                                  
+                                                    <div style="display: inline-block;">
+                                                        <div class="timeline-header">
+                                                            <a class="nav-link" href="~/Profile/@listComments.CreatorId" style="display: inline-block;">
+                                                                <img src="~/img/noavatar.png" alt="Your avatar" width="30px;30px;" style="display: inline-block;" />
+                                                                <span class="username">@listComments.CreatorName</span>
+                                                            </a>
+                                                        </div>
+                                                        @listComments.Text
+                                                       
+                                                    </div>
+                                                 
+                                                                }
+                                                                <!-- Комментарий -->
+                                                                <div class="timeline-comment-box">
+                                                                    <div class="user">
+                                                                        <img src="~/img/noavatar.png" alt="Your avatar">
+                                                                    </div>
+                                                                    <div class="input">
+                                                                        <form method="post">
+                                                                            <div class="input-group">
+                                                                                <input type="text" asp-for="comment.Text" class="form-control rounded-corner" placeholder="Напишите что-нибудь...">
+                                                                                <span class="alert-danger" asp-validation-for="comment.Text"></span>
+                                                                                <input type="text" asp-for="comment.PostId" value="@myPost.Id" hidden>
+                                                                                <div class="input-group-btn p-l-10">
+                                                                                    <button asp-page-handler="SendComment" style="margin-left: 1rem;" class="btn btn-primary f-s-12 rounded-corner" type="submit">
+                                                                                        Отправить
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
                                                                 </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
 
-                                                </div>
-                                            </li>
+                                                            </div>
+</li>
 
-                                            <!-- Прокрутка вниз с загрузкой поста -->
-                                            <li>
-                                                <div class="timeline-icon">
-                                                    <a href="javascript:;">&nbsp;</a>
-                                                </div>
-                                                <div class="timeline-body">
-                                                    Загрузка...
-                                                </div>
-                                            </li>
-
-                                        </ul>
+                                              
+                                            }
+                                            </ul>
+                                       
                                     </div>
                                 </div>
                             </div>

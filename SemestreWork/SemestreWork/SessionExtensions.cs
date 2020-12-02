@@ -19,10 +19,5 @@ namespace SemestreWork
             var value = session.GetString(key);
             return value == null ? default(T) : JsonSerializer.Deserialize<T>(value);
         }
-        public static string GetStr(this ISession session, string key)
-        {
-            var value = session.GetString(key);
-            return value;
-        }
     }
 }

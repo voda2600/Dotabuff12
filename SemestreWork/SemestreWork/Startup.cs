@@ -46,6 +46,7 @@ namespace SemestreWork
             services.AddTransient<TopPlayersRepository>();
             services.AddTransient<IRegisterRepository,RegisterRepository>();
             services.AddTransient<IUserPosstRepository, UserPostsRepository>();
+            services.AddTransient<ICommentsRepository, CommentsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
