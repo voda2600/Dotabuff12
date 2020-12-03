@@ -75,7 +75,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="exampleInputNickname">Псевдоним:</label>
                                         <input asp-for="user.Nick" type="text" class="form-control" id="exampleInputNickname"
-                                               pattern="^(?!.*\.\.)(?!\.)(?!.*\.$)(?!\d+$)[a-zA-Z0-9.]{5,15}$" placeholder="Введите псевдоним..." required>
+                                               pattern="^(?!.*\.\.)(?!\.)(?!.*\.$)(?!\d+$)[a-zA-Z0-9.]{3,20}$" placeholder="Введите псевдоним..." required>
                                         <span class="alert-danger" asp-validation-for="user.Nick"></span>
                                     </div>
 
