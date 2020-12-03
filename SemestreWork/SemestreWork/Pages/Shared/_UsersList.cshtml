@@ -1,0 +1,24 @@
+﻿@using SemestreWork.Models;
+@model List<RegisterModel>
+
+    @foreach (var MyUser in Model)
+    {
+    <div class="timeline-header">
+        <span class="userimage">
+            @if (@MyUser.Image == null)
+            {
+                <img src="~/img/noavatar.png">
+            }
+            else
+            {
+                <img src="@MyUser.Image">
+            }
+        </span>
+        <span class="username">
+            <a href="/Profile/@MyUser.Id">@MyUser.Nick</a> <!-- Ну тут никнейм (псевдоним) от айдишника -->
+            <small></small>
+        </span>
+    </div>
+    }
+
+

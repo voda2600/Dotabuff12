@@ -1,0 +1,191 @@
+﻿@page
+@model SemestreWork.Pages.SiteUsersModel
+@using Microsoft.AspNetCore.Http
+@using SemestreWork.Models;
+@{
+    Layout = null;
+    int uid = 0;
+    if (HttpContext.Session.Get<string>("AuthReady") == "true")
+    {
+        var user = HttpContext.Session.Get<RegisterModel>("AuthUser");
+        if (user != null)
+        {
+            uid = user.Id;
+        }
+    }
+}
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" conыtent="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+    <link rel="shortcut icon" href="~/img/Logo.png" type="image/png">
+    <title>Главная</title>
+</head>
+
+<body>
+
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-md navbar-inverse navbar-fixed-top
+    navbar-dark justify-content-center" id="nav1">
+        <a class="navbar-brand" href="/Home"
+           style="margin-left: 6rem;">
+            <stroke style="font: 25px 'Raleway', sans-serif;
+        text-shadow: 1px 1px 2px black, 0 0 1em #FF00FF;">AnyMeta</stroke>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Home" style="margin-left: 1.2rem;">Домой</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link py-2 d-none d-md-inline-block" href="/About">Подробно</a>
+                </li>
+            </ul>
+            @if (HttpContext.Session.Get<string>("AuthReady") == "false")
+            {
+                <button type="button" class="btn btn-outline-primary" id="authorization"
+                        onclick="document.location='/Authorization'">
+                    Авторизация
+                </button>
+                <button type="button" onclick="document.location='/Registration'"
+                        class="btn btn-primary" id="registration"
+                        style="margin-right: 7rem;">
+                    Регистрация
+                </button>
+            }
+            else
+            {
+
+                <ul class="navbar-nav mr-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/Profile/@uid">Профиль</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-page="Authorization" asp-page-handler="LogOut">Выйти</a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-md navbar-inverse navbar-fixed-top
+      navbar-dark justify-content-center" id="nav2">
+            <ul class="navbar-nav justify-content-center">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Home">Главная</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Meta">Мета</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Heroes">Герои</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Cybersport">Киберспорт</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/SiteUsers">Пользователи</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/About">О проекте</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Авторизация -->
+    <!-- <a>class="btn btn-danger btn-lg" href="/logout">Выйти</a> -->
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            <h2>Все зарегистрированные пользователи:</h2>
+            <p><button class="btn btn-primary" id="load1" style="width:100px;">Получить</button></p>
+            <div id="grid1"></div>
+
+            <script>
+                $(function () {
+                    $('#load1').on('click', function () {
+                        $('#grid1').load('/SiteUsers?handler=UsersPartial');
+                    });
+                });
+            </script>
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </main>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer font-small teal pt-4">
+        <div class="container-fluid text-center text-md-left">
+            <div class="row">
+                <div class="col-1"></div>
+
+                <div class="col-md-5 mt-md-0 mt-3">
+                    <h5 class="text-uppercase font-weight-bold">О проекте</h5>
+                    <p>
+                        AnyMeta — многоцелевой сайт, на котором собрана статистика побед и героев,
+                        а также последние новости из игры, обновлений, мира киберспорта и многое другое.
+                        Также имеется таблица героев и мета-отчёт.
+                    </p>
+                </div>
+
+                <hr class="clearfix w-100 d-md-none pb-3">
+                <div class="col-md-5 mb-md-0 mb-3">
+                    <h5 class="text-uppercase font-weight-bold">Разработчики</h5>
+                    <address>
+                        <b>КФУ, ИТИС</b><br>
+                        Адрес: ул. Кремлевская, 35, Казань, Респ. Татарстан, 420008<br>
+                        Номер: 233-79-91
+                    </address>
+                </div>
+
+                <div class="col-1"></div>
+
+            </div>
+        </div>
+        <div class="footer-copyright text-center py-3">
+            © 2020 Copyright: &nbsp
+            <a href="/Home">AnyMeta.ru</a>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+
+</body>
+</html>
