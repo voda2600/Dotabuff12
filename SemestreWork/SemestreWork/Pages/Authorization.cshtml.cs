@@ -62,6 +62,7 @@ namespace SemestreWork.Pages
             var user = HttpContext.Session.Get<RegisterModel>("AuthUser");
             user.CookieId = null;
             _usersRepository.EditUserCookie(user);
+            HttpContext.Response.Cookies.Delete("CookieId");
             HttpContext.Session.Clear();
             HttpContext.Session.Set("AuthReady", "false");
             return RedirectToPage("/Home");

@@ -16,10 +16,12 @@ namespace SemestreWork.Pages
     public class NewsModel : PageModel
     {
         INewsRepository _Repository;
-        ICommentsRepository _commentsRepository;    
-        public NewsModel(INewsRepository Repository,ICommentsRepository commentsRepository)
+        ICommentsRepository _commentsRepository;
+        public  IRegisterRepository _registerRepository;
+        public NewsModel(INewsRepository Repository,ICommentsRepository commentsRepository,IRegisterRepository registerRepository)
         {
             _Repository = Repository;
+            _registerRepository = registerRepository;
             _commentsRepository = commentsRepository;
         }
 

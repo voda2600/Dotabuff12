@@ -111,17 +111,30 @@
                             </form>
                         }
                     }
-                    <div style="display: inline-block;">
-
+                    <div >
+                        @{ 
+                            var comUser = Model._registerRepository.GetUser(@listComments.CreatorId);
+                        }
                         <div class="timeline-header">
 
                             <a class="nav-link" href="~/Profile/@listComments.CreatorId" style="display: inline-block;">
-                                <img src="~/img/noavatar.png" alt="Your avatar" width="30px;30px;" style="display: inline-block;" />
-                                <span class="username">@listComments.CreatorName</span>
-                            </a>
+                                <div class="timeline-header">
+                                    <span class="userimage">
+                                        @if (@comUser.Image == null)
+                                        {
+                                            <img src="~/img/noavatar.png" style="display: inline-block;">
+                                        }
+                                        else
+                                        {
+                                            <img src="@comUser.Image" style="display: inline-block;">
+                                        }
+                                    </span>
+                                    @listComments.CreatorName
+                                </div>
+</a>
                         </div>
                         @listComments.Text
-
+                        <hr />
                     </div>
 
                 }

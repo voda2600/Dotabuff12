@@ -81,17 +81,15 @@ namespace SemestreWork
             {
                 string CookieId;
                 string Email;
-                if (context.Request.Cookies.TryGetValue("CookieId", out CookieId)
+                if (context.Request.Cookies.ContainsKey("CookieId")
+           &&
+           context.Request.Cookies.ContainsKey("Email"))
+                    if (context.Request.Cookies.TryGetValue("CookieId", out CookieId)
                 &&
                 context.Request.Cookies.TryGetValue("Email", out Email))
                 {
                     var user = registerRep.GetUserByCookie(int.Parse(CookieId), Email);
-                    if (user is null)
-                    {
-                        await next.Invoke();
-                    }
-                    else
-                    {
+                    if (!(user is null)) { 
                         context.Session.Set<RegisterModel>("AuthUser", user);
                         context.Session.Set("AuthReady", "true");
                     }
