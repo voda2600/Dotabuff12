@@ -17,6 +17,8 @@ namespace SemestreWork.Pages
             _usersRepository = usersRepository;
         }
         [BindProperty]
+        public bool save { get; set; }
+        [BindProperty]
         public List<RegisterModel> usersList { get; set; }
         [BindProperty]
         public RegisterModel Anon { get; set; }
@@ -31,7 +33,6 @@ namespace SemestreWork.Pages
         }
         public IActionResult OnPost()
         {
-           
             AuthUser = _usersRepository.GetAuthUser(Anon.Email,Crypto.HashPassword(Anon.Password));
             if (AuthUser is null)
             {
@@ -42,12 +43,25 @@ namespace SemestreWork.Pages
             {
                 HttpContext.Session.Set<RegisterModel>("AuthUser", AuthUser);
                 HttpContext.Session.Set("AuthReady", "true");
+                HttpContext.Response.Cookies.Append("Email", AuthUser.Email);
+                if (save)
+                {
+                    Random random = new Random();
+                    AuthUser.CookieId = random.Next(1, 10000000).ToString();
+                    _usersRepository.EditUserCookie(AuthUser);
+                    HttpContext.Response.Cookies.Append("CookieId", AuthUser.CookieId);
+                }
+               
                 return Redirect("/Profile/"+AuthUser.Id.ToString());
             }
                 
         }
         public IActionResult OnGetLogOut()
         {
+            
+            var user = HttpContext.Session.Get<RegisterModel>("AuthUser");
+            user.CookieId = null;
+            _usersRepository.EditUserCookie(user);
             HttpContext.Session.Clear();
             HttpContext.Session.Set("AuthReady", "false");
             return RedirectToPage("/Home");

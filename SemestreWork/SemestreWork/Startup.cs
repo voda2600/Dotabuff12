@@ -33,7 +33,8 @@ namespace SemestreWork
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromSeconds(3600);
+
+                options.IdleTimeout = TimeSpan.FromDays(1);
                 options.Cookie.HttpOnly = false;
             });
             services.AddSingleton<IConfiguration>(Configuration);
@@ -50,7 +51,7 @@ namespace SemestreWork
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IRegisterRepository registerRep)
         {
             if (env.IsDevelopment())
             {
@@ -68,13 +69,37 @@ namespace SemestreWork
 
             app.UseRouting();
             app.UseSession();
+            app.UseAuthorization();
+          
             app.Use(async (context,next) =>
             {
                 if (!context.Session.Keys.Contains("AuthReady"))
                     context.Session.Set("AuthReady","false");
                 await next.Invoke();
             });
-            app.UseAuthorization();
+            app.Use(async (context, next) =>
+            {
+                string CookieId;
+                string Email;
+                if (context.Request.Cookies.TryGetValue("CookieId", out CookieId)
+                &&
+                context.Request.Cookies.TryGetValue("Email", out Email))
+                {
+                    var user = registerRep.GetUserByCookie(int.Parse(CookieId), Email);
+                    if (user is null)
+                    {
+                        await next.Invoke();
+                    }
+                    else
+                    {
+                        context.Session.Set<RegisterModel>("AuthUser", user);
+                        context.Session.Set("AuthReady", "true");
+                    }
+                }
+    
+                await next.Invoke();
+            });
+
 
             app.UseEndpoints(endpoints =>
             {

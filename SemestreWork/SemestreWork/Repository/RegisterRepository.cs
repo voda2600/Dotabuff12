@@ -95,6 +95,31 @@ namespace SemestreWork.Repository
                 return count;
             }
         }
+        public int EditUserCookie(RegisterModel user)
+        {
+            var connectionString = this.GetConnection();
+            var count = 0;
+
+            using (var con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    var query = "UPDATE MyUsers SET CookieId=@CookieId WHERE Id = @Id";
+                    count = con.Execute(query, user);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    con.Close();
+                }
+
+                return count;
+            }
+        }
 
         public List<RegisterModel> GetList()
         {
@@ -175,6 +200,32 @@ namespace SemestreWork.Repository
             }
         }
 
+        public RegisterModel GetUserByCookie(int CookieId, string Email)
+        {
+            var connectionString = this.GetConnection();
+            RegisterModel product = new RegisterModel();
+
+            using (var con = new SqlConnection(connectionString))
+            {
+                try
+                {
+
+                    con.Open();
+                    var query = "SELECT * FROM MyUsers WHERE (CookieId ="+CookieId+" AND Email ='"+Email+"')" ;
+                    product = con.Query<RegisterModel>(query).FirstOrDefault();
+                }
+                catch
+                {
+                    throw new Exception("Нет данного пользователя");
+                }
+                finally
+                {
+                    con.Close();
+                }
+
+                return product;
+            }
+        }
         public string GetConnection()
         {
             var connection = _configuration.GetSection("ConnectionStrings").GetSection("MyData").Value;

@@ -17,6 +17,8 @@ namespace SemestreWork.Repository
         int EditUser(RegisterModel news);
 
         int DeleteUser(int id);
+        int EditUserCookie(RegisterModel user);
         RegisterModel GetAuthUser(string email, string password);
+        RegisterModel GetUserByCookie(int CookieId, string Email);
     }
 }
